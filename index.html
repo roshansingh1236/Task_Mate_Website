@@ -1,634 +1,457 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TasksMate - Simplify Work, Boost Productivity</title>
+    <link rel="icon" href="./public/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="./global.css" />
-    <link rel="stylesheet" href="./index.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Permanent Marker:wght@400&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Plus Jakarta Sans:wght@500;600;700&display=swap"
-    />
-  </head>
-  <body>
-    <div class="main-container">
-      <div class="designing-a-website-for-a-proj">
-        <div class="software-company-header">
-          <div class="div">
-            <a href="#home" class="logo">
-              <img
-                class="untitled-2-1-icon"
-                alt=""
-                src="./public/untitled2-1@2x.png"
-              />
-              <b class="logo-text">TaskMate</b>
-            </a>
-            <div class="pagelinks">
-              <div class="pagelink1">
-                <div class="label">Home</div>
-                <img
-                  class="chevron-down-icon"
-                  alt=""
-                  src="./public/chevrondown.svg"
-                />
-              </div>
-              <div class="pagelink1">
-                <div class="label">Features</div>
-                <img
-                  class="chevron-down-icon"
-                  alt=""
-                  src="./public/chevrondown.svg"
-                />
-              </div>
-              <div class="pagelink1">
-                <div class="label">Pricing</div>
-                <img
-                  class="chevron-down-icon"
-                  alt=""
-                  src="./public/chevrondown.svg"
-                />
-              </div>
-              <div class="pagelink1">
-                <div class="label">About Us</div>
-                <img
-                  class="chevron-down-icon"
-                  alt=""
-                  src="./public/chevrondown.svg"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="buttongroup">
-            <a class="playstore-button" href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="icon" viewBox="0 0 512 512">
-                <path d="M99.617 8.057a50.191 50.191 0 00-38.815-6.713l230.932 230.933 74.846-74.846L99.617 8.057zM32.139 20.116c-6.441 8.563-10.148 19.077-10.148 30.199v411.358c0 11.123 3.708 21.636 10.148 30.199l235.877-235.877L32.139 20.116zM464.261 212.087l-67.266-37.637-81.544 81.544 81.548 81.548 67.273-37.64c16.117-9.03 25.738-25.442 25.738-43.908s-9.621-34.877-25.749-43.907zM291.733 279.711L60.815 510.629c3.786.891 7.639 1.371 11.492 1.371a50.275 50.275 0 0027.31-8.07l266.965-149.372-74.849-74.847z"></path>
-              </svg>
-              <span class="texts">
-                <span class="text-2">Google Play</span>
-              </span>
-            </a>
-            <!-- <div class="label">Download app</div> -->
-            <img class="buttongroup-child" alt="" src="./public/vector-1.svg" />
-
-           <!--  <div class="buttonfilledstandard">
-              <div class="label">Try it free</div>
-            </div> -->
-            <a class="playstore-button" href="#">
-              <svg  xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="icon" viewBox="0 0 512 512">
-                <path
-                  d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"
-                  fill="currentColor"
-                ></path>
-              </svg>
-              <span class="texts">
-                <span class="text-2">App Store</span>
-              </span>
-            </a>
-          </div>
-          <img class="divider-icon" alt="" src="./public/divider.svg" />
+</head>
+<body >
+    <!-- Background pattern layer, Custom cursor, Theme toggle, Scroll buttons, Loader, Decorative shapes remain unchanged -->
+    <div class="bg-pattern"></div>
+    <div class="custom-cursor"></div>
+    <div class="cursor-follower"></div>
+    <!-- <div class="theme-toggle" id="theme-toggle">
+        <i class="bi bi-sun-fill theme-icon" id="theme-icon"></i>
+    </div> -->
+    <div class="scroll-buttons"> 
+        <div class="scroll-button scroll-to-top" id="scroll-to-top">
+            <i class="bi bi-arrow-up text-2xl text-white"></i>
         </div>
-        <div class="container">
-          <div class="main-content">
-            <div id="home" class="landing-page-hero-with-tagline">
-              <div class="container1">
-                <div class="content">
-                  <div class="tagline">
-                    <b>Streamline Your Projects and Tasks with </b>
-                    <span class="taskmate" id="taskmate"></span>
-                  </div>
-                  <div class="buttonmarketing">
-                    <div class="button-text">Get Started for Free</div>
-                  </div>
-                </div>
-                <div class="ui">
-                  <div class="hero-desktop-ui">
-                    <img
-                      class="task-background-image"
-                      alt=""
-                      src="./public/task-background-image@2x.png"
-                    />
-
-                    <div class="tagline1">Tasks</div>
-                    <img
-                      class="project-background-image"
-                      alt=""
-                      src="./public/project-background-image@2x.png"
-                    />
-
-                    <div class="tagline2">Projects</div>
-                    <img
-                      class="meetings-background-image"
-                      alt=""
-                      src="./public/meetings-background-image@2x.png"
-                    />
-
-                    <div class="button-container">
-                      <div class="button-text">
-                        TaskMate helps you manage your projects efficiently and
-                        effectively.
-                      </div>
-                    </div>
-                    <div class="tagline3">Meetings</div>
-                    <div class="logo1">
-                      <img
-                        class="untitled-2-1-icon1"
-                        alt=""
-                        src="./public/untitled2-11@2x.png"
-                      />
-
-                      <b class="logo-text">TaskMate</b>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="features" class="value-proposition-cards-sectio">
-              
-              <b class="title">Features</b>
-              <div class="row">
-                <div class="value-proposition-card">
-                  <img class="tools-icon" alt="" src="./public/tools.svg" />
-
-                  <div class="featuredescription">Task Management</div>
-                </div>
-                <div class="value-proposition-card">
-                  <img class="tools-icon" alt="" src="./public/building.svg" />
-
-                  <div class="featuredescription">Project Tracking</div>
-                </div>
-                <div class="value-proposition-card">
-                  <img class="tools-icon" alt="" src="./public/share.svg" />
-
-                  <div class="featuredescription">Collaboration Tools</div>
-                </div>
-              </div>
-              <div class="row1">
-                <div class="value-proposition-card">
-                  <img class="tools-icon" alt="" src="./public/clock.svg" />
-
-                  <div class="featuredescription">Time Tracking</div>
-                </div>
-                <div class="value-proposition-card">
-                  <img class="tools-icon" alt="" src="./public/clock.svg" />
-
-                  <div class="featuredescription">Time Tracking</div>
-                </div>
-                <div class="value-proposition-card">
-                  <img class="tools-icon" alt="" src="./public/tools.svg" />
-
-                  <div class="featuredescription">Reporting and Analytics</div>
-                </div>
-              </div>
-              <img class="divider-icon1" alt="" src="./public/divider1.svg" />
-            </div>
-            <div id="pricing" class="saas-plan-subscription-compari">
-              <div class="textcontent">
-                <b class="tagline4">Flexible Pricing Plans</b>
-                <div class="featuredescription6">
-                  Choose the plan that suits your needs best.
-                </div>
-              </div>
-              <div class="plancards">
-                <div class="plancard">
-                  <div class="textcontent1">
-                    <b class="planname">Basic</b>
-                    <div class="price">
-                      <b class="price1">$0</b>
-                      <div class="billingstructure">per month</div>
-                    </div>
-                    <div class="intendedaudience">Individuals</div>
-                  </div>
-                  <div class="buttonoutlinedstandard">
-                    <div class="label">Choose Plan</div>
-                  </div>
-                  <img
-                    class="divider-icon2"
-                    alt=""
-                    src="./public/divider2.svg"
-                  />
-
-                  <div class="features">
-                    <div class="feature">
-                      <img class="check-icon" alt="" src="./public/check.svg" />
-
-                      <div class="feature-name-or">Basic Task Management</div>
-                    </div>
-                    <div class="feature">
-                      <img class="check-icon" alt="" src="./public/check.svg" />
-
-                      <div class="feature-name-or">Community Support</div>
-                    </div>
-                    <div class="feature">
-                      <img class="check-icon" alt="" src="./public/check.svg" />
-
-                      <div class="feature-name-or">Limited Analytics</div>
-                    </div>
-                    <div class="feature">
-                      <img class="check-icon" alt="" src="./public/check.svg" />
-
-                      <div class="feature-name-or">Project Tracking</div>
-                    </div>
-                    <div class="feature">
-                      <img class="check-icon" alt="" src="./public/check.svg" />
-
-                      <div class="feature-name-or">Collaboration Tools</div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="plancard2">
-                  <div class="textcontent1">
-                    <b class="planname">Pro</b>
-                    <div class="price">
-                      <b class="price1">$40</b>
-                      <div class="billingstructure">per month</div>
-                    </div>
-                    <div class="intendedaudience2">Small Teams</div>
-                  </div>
-                  <div class="buttonfilledstandard1">
-                    <div class="label">Start with Plus</div>
-                  </div>
-                  <img
-                    class="divider-icon2"
-                    alt=""
-                    src="./public/divider2.svg"
-                  />
-
-                  <div class="features2">
-                    <div class="feature">
-                      <img class="check-icon" alt="" src="./public/check.svg" />
-
-                      <div class="feature-name-or">
-                        Advanced Task Management
-                      </div>
-                    </div>
-                    <div class="feature">
-                      <img class="check-icon" alt="" src="./public/check.svg" />
-
-                      <div class="feature-name-or">Priority Support</div>
-                    </div>
-                    <div class="feature">
-                      <img class="check-icon" alt="" src="./public/check.svg" />
-
-                      <div class="feature-name-or">Time Tracking</div>
-                    </div>
-                    <div class="feature">
-                      <img class="check-icon" alt="" src="./public/check.svg" />
-
-                      <div class="feature-name-or">Custom Reports</div>
-                    </div>
-                    <div class="feature">
-                      <img class="check-icon" alt="" src="./public/check.svg" />
-
-                      <div class="feature-name-or">Unlimited Projects</div>
-                    </div>
-                  </div>
-                </div>
-               
-                <div class="plancard4">
-                  <div class="textcontent5">
-                    <b class="planname">Ultimate</b>
-                    <div class="price">
-                      <b class="price1">$50</b>
-                      <div class="billingstructure4">per month</div>
-                    </div>
-                    <div class="intendedaudience4">Extra Large Enterprises</div>
-                  </div>
-                  <div class="buttonoutlinedstandard">
-                    <div class="label">Choose Plan</div>
-                  </div>
-                  <img
-                    class="divider-icon2"
-                    alt=""
-                    src="./public/divider2.svg"
-                  />
-
-                  <div class="features">
-                    <div class="feature">
-                      <img class="check-icon" alt="" src="./public/check.svg" />
-
-                      <div class="feature-name-or">All Enterprise Features</div>
-                    </div>
-                    <div class="feature">
-                      <img class="check-icon" alt="" src="./public/check.svg" />
-
-                      <div class="feature-name-or">Personalized Onboarding</div>
-                    </div>
-                    <div class="feature">
-                      <img class="check-icon" alt="" src="./public/check.svg" />
-
-                      <div class="feature-name-or">Custom SLA</div>
-                    </div>
-                    <div class="feature">
-                      <img class="check-icon" alt="" src="./public/check.svg" />
-
-                      <div class="feature-name-or">Unlimited Users</div>
-                    </div>
-                    <div class="feature">
-                      <img class="check-icon" alt="" src="./public/check.svg" />
-
-                      <div class="feature-name-or">Dedicated Support Team</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <img class="divider-icon" alt="" src="./public/divider3.svg" />
-            </div>
-            <div class="landing-page-testimonial-carou">
-              <b class="featuredescription7">What Our Users Say</b>
-              <div style="display: flex;
-            flex-direction: row;
-            justify-content: end;
-            width: -webkit-fill-available;
-            margin-right: 20vw;">
-          <div>
-            <button class="scroll-right" onclick="scrollRight()">
-              <span>&#9654;</span> <!-- Right arrow symbol -->
-            </button>
-          </div>
+        <div class="scroll-button scroll-to-bottom" id="scroll-to-bottom">
+            <i class="bi bi-arrow-down text-2xl text-white"></i>
         </div>
-
-              <div class="testimonialcards">
-                <div class="testimonialcard">
-                  <div class="container2">
-                    <img
-                      class="profile-icon"
-                      alt=""
-                      src="./public/profile@2x.png"
-                    />
-
-                    <div class="textcontent6">
-                      <b class="name">Evelyn Harper</b>
-                      <div class="title1">Project Manager</div>
-                    </div>
-                  </div>
-                  <div class="quote-container">
-                    <div class="line-container">
-                      <img class="line-icon" alt="" src="./public/line.svg" />
-                    </div>
-                    <div class="name1">
-                      TaskMate has revolutionized the way we manage our
-                      projects!
-                    </div>
-                  </div>
-                </div>
-                <div class="testimonialcard">
-                  <div class="container2">
-                    <img
-                      class="profile-icon"
-                      alt=""
-                      src="./public/profile1@2x.png"
-                    />
-
-                    <div class="textcontent6">
-                      <b class="name">Liam O'Connor</b>
-                      <div class="title1">Team Lead</div>
-                    </div>
-                  </div>
-                  <div class="quote-container">
-                    <div class="line-container">
-                      <img class="line-icon" alt="" src="./public/line1.svg" />
-                    </div>
-                    <div class="name1">A must-have tool for any team.</div>
-                  </div>
-                </div>
-                <div class="testimonialcard">
-                  <div class="container2">
-                    <img
-                      class="profile-icon"
-                      alt=""
-                      src="./public/profile2@2x.png"
-                    />
-
-                    <div class="textcontent6">
-                      <b class="name">Olivia Chen</b>
-                      <div class="title1">Freelancer</div>
-                    </div>
-                  </div>
-                  <div class="quote-container">
-                    <div class="line-container">
-                      <img class="line-icon" alt="" src="./public/line1.svg" />
-                    </div>
-                    <div class="name1">Efficient and user-friendly.</div>
-                  </div>
-                </div>
-                <div class="testimonialcard">
-                  <div class="container2">
-                    <img
-                      class="profile-icon"
-                      alt=""
-                      src="./public/profile3@2x.png"
-                    />
-
-                    <div class="textcontent6">
-                      <b class="name">Noah Patel</b>
-                      <div class="title1">CEO</div>
-                    </div>
-                  </div>
-                  <div class="quote-container">
-                    <div class="line-container">
-                      <img class="line-icon" alt="" src="./public/line.svg" />
-                    </div>
-                    <div class="name1">
-                      Our productivity has doubled since we started using
-                      TaskMate.
-                    </div>
-                  </div>
-                </div>
-                <div class="testimonialcard">
-                  <div class="container2">
-                    <img
-                      class="profile-icon"
-                      alt=""
-                      src="./public/profile4@2x.png"
-                    />
-
-                    <div class="textcontent6">
-                      <b class="name">Sophia Kim</b>
-                      <div class="title1">Consultant</div>
-                    </div>
-                  </div>
-                  <div class="quote-container">
-                    <div class="line-container">
-                      <img class="line-icon" alt="" src="./public/line.svg" />
-                    </div>
-                    <div class="name1">
-                      Highly recommend for any project management needs.
-                    </div>
-                  </div>
-                </div>
-                <div class="testimonialcard">
-                  <div class="container2">
-                    <img
-                      class="profile-icon"
-                      alt=""
-                      src="./public/profile5@2x.png"
-                    />
-
-                    <div class="textcontent6">
-                      <b class="name">Aiden Martinez</b>
-                      <div class="title1">Developer</div>
-                    </div>
-                  </div>
-                  <div class="quote-container">
-                    <div class="line-container">
-                      <img class="line-icon5" alt="" src="./public/line2.svg" />
-                    </div>
-                    <div class="name1">
-                      The best tool for managing tasks and projects.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-              <div class="bleed"></div>
-              <img class="divider-icon8" alt="" src="./public/divider.svg" />
-            </div>
-          </div>
-        </div>
-        <div id="aboutus" class="software-company-footer">
-         <!--  <img class="divider-icon9" alt="" src="./public/divider4.svg" /> -->
-
-          <div class="pagelinks1">
-            <div class="logos">
-              <div class="logo2">
-                <img class="logomark-icon" alt="" src="./public/logomark.svg" />
-
-                <b class="logo-text">TaskMate</b>
-              </div>
-              <div class="container8">
-                <img class="check-icon" alt="" src="./public/facebook.svg" />
-
-                <img class="check-icon" alt="" src="./public/instagram.svg" />
-
-                <img class="check-icon" alt="" src="./public/twitter.svg" />
-              </div>
-            </div>
-            <div class="footerlinkcolumn">
-              <div class="title7">Company</div>
-              <div class="label12">About Us</div>
-              <div class="label12">Careers</div>
-              <div class="label12">Press</div>
-              <div class="label15">Page link</div>
-              <div class="label15">Page link</div>
-            </div>
-            <div class="footerlinkcolumn">
-              <div class="title7">Resources</div>
-              <div class="label12">Blog</div>
-              <div class="label12">Help Center</div>
-              <div class="label12">Contact Us</div>
-              <div class="label15">Page link</div>
-              <div class="label15">Page link</div>
-            </div>
-            <div class="footerlinkcolumn">
-              <div class="title7">Legal</div>
-              <div class="label12">Privacy Policy</div>
-              <div class="label12">Terms of Service</div>
-              <div class="label15">Page link</div>
-              <div class="label15">Page link</div>
-              <div class="label15">Page link</div>
-            </div>
-            <div class="footerlinkcolumn">
-              <div class="title7">Follow Us</div>
-              <div class="label12">Facebook</div>
-              <div class="label12">Twitter</div>
-              <div class="label12">LinkedIn</div>
-              <div class="label15">Page link</div>
-              <div class="label15">Page link</div>
-            </div>
-          </div>
-        </div>
-      </div>
-   <!--    <img
-        class="section-container-icon"
-        alt=""
-        src="./public/section-container@2x.png"
-      />
-
-      <img
-        class="section-container-icon1"
-        alt=""
-        src="./public/section-container1@2x.png"
-      />
-
-      <img
-        class="section-container-icon2"
-        alt=""
-        src="./public/section-container2@2x.png"
-      /> -->
     </div>
+    <div id="loader" class="loader-container">
+        <div class="loader">
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+        </div>
+    </div>
+    <div class="shape shape-square" style="bottom: 15%; left: 5%;"></div>
+    <div class="shape shape-zigzag" style="top: 60%; right: 10%;"></div>
+    <div class="shape shape-dots" style="top: 37%;
+    left: -23%;"></div>
+
+    <!-- Navbar (unchanged) -->
+    <nav class="bg-white p-4 border-b-4 border-black sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold cursor-pointer" id="navbar-logo" style="display: flex; text-align: center; align-items: end;">
+                <img class="untitled-2-1-icon" alt="" src="./public/untitled2-1@2x.png" />TasksMate
+            </h1>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#features" class="hover:text-[#FF4F4F] font-medium">Features</a>
+                <a href="#integrations" class="hover:text-[#FF4F4F] font-medium">Integrations</a>
+                <a href="#services" class="hover:text-[#FF4F4F] font-medium">Services</a>
+                <a href="#teams" class="hover:text-[#FF4F4F] font-medium">Teams</a>
+                <a href="#pricing" class="hover:text-[#FF4F4F] font-medium">Pricing</a>
+                <a href="#blog" class="hover:text-[#FF4F4F] font-medium">Blog</a>
+                <a href="#about" class="hover:text-[#FF4F4F] font-medium">About</a>
+                <button class="neubrutalism action-btn text-white px-6 py-2 font-medium contact-btn">Get Started</button>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden"><i class="bi bi-list text-3xl"></i></button>
+        </div>
+    </nav>
     
-  </body>
-  <script>
- function scrollRight() {
-  const container = document.querySelector('.testimonialcards');
-  if (container) {
-    console.log('Container found, scrolling...');
-    const scrollAmount = 300; // Adjust this value to control how much to scroll
-    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  } else {
-    console.log('Container not found');
-  }
-}
+    
 
+    <!-- Mobile Menu (unchanged) -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="flex justify-between w-full mb-8">
+            <h1 class="text-2xl font-bold cursor-pointer" id="mobile-logo">TasksMate</h1>
+            <button id="close-menu"><i class="bi bi-x-lg text-2xl"></i></button>
+        </div>
+        <a href="#features" class="my-4 text-xl hover:text-[#FF4F4F]">Features</a>
+        <a href="#integrations" class="my-4 text-xl hover:text-[#FF4F4F]">Integrations</a>
+        <a href="#services" class="my-4 text-xl hover:text-[#FF4F4F]">Services</a>
+        <a href="#teams" class="my-4 text-xl hover:text-[#FF4F4F]">Teams</a>
+        <a href="#pricing" class="my-4 text-xl hover:text-[#FF4F4F]">Pricing</a>
+        <a href="#blog" class="my-4 text-xl hover:text-[#FF4F4F]">Blog</a>
+        <a href="#about" class="my-4 text-xl hover:text-[#FF4F4F]">About</a>
+        <button class="neubrutalism action-btn text-white px-8 py-3 mt-6 w-full max-w-xs contact-btn">Get Started</button>
+    </div>
 
-document.addEventListener("DOMContentLoaded", function() {
-  const text = "TaskMate";
-  const speed = 150; // typing speed in milliseconds
-  let i = 0;
-  const element = document.getElementById("taskmate");
+   <!-- Hero Section (Add Buttons) -->
+   <section class="hero-section container mx-auto py-16 px-4 relative overflow-hidden">
+    <div id="hero-content" class="max-w-4xl mx-auto text-center fade-in">
+     
+    </div>
+    <div class="shape shape-circle" style="
+        bottom: 1%;
+        right: 1%;
+        width: 80px;
+        height: 80px;
+        background-color: rgb(123, 97, 255);
+        opacity: 0.4;
+        animation-delay: 1.19648s;"></div>
+    <div class="shape shape-square" style="top: 100px; right: 0%; width: 60px; height: 60px; background-color: #4ECDC4;"></div>
+</section>
 
-  function typeWriter() {
-    if (i < text.length) {
-      element.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typeWriter, speed);
-    }
-  }
+    <!-- Unlock Collaboration Section -->
+    <section class="py-16 px-4 relative">
+        <div class="container mx-auto">
+            <div id="collaboration-content" class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"></div>
+        </div>
+        <div class="shape shape-dots" style="bottom: 50px; right: 10%;"></div>
+    </section>
+    <!-- Add this new section after the Stats Section and before the Partners Section -->
+<section class="py-16 relative overflow-hidden">
+    <div id="replaces-software-content"></div>
+    <div class="text-center mt-12">
+        <button class="neubrutalism contact-btn text-white px-8 py-3">🚀 Switch to TasksMate</button>
+    </div>
+</section>
 
-  typeWriter();
-});
+<!-- Pricing Comparison Section -->
+<section class="py-16 px-4 relative overflow-hidden">
+    <div class="container mx-auto">
+        <div class="feature-card p-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">TasksMate vs. The Competition</h2>
+                <p class="text-xl text-gray-600">Compare pricing for your team size</p>
+            </div>
 
+            <!-- Team Size Toggle -->
+            <div class="flex justify-center mb-8 gap-4 flex-wrap">
+                <button class="neubrutalism action-btn px-4 py-2 subscription-toggle active" data-users="10">10 Users</button>
+                <button class="neubrutalism info-btn px-4 py-2 subscription-toggle" data-users="25">25 Users</button>
+                <button class="neubrutalism demo-btn px-4 py-2 subscription-toggle" data-users="50">50 Users</button>
+                <button class="neubrutalism contact-btn px-4 py-2 subscription-toggle" data-users="100">100 Users</button>
+            </div>
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Smooth scrolling to sections
-    document.querySelectorAll('.pagelink1 .label').forEach(item => {
-      item.addEventListener('click', function() {
-        const sectionId = this.textContent.toLowerCase().replace(' ', '');
-        const section = document.getElementById(sectionId);
-        if (section) {
-          section.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start relative">
+                <!-- Left Side: Competitors Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <!-- Jira -->
+                    <div class="integration-card p-4 text-center">
+                        <div class="w-12 h-12 bg-[#0052CC] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
+                            <i class="bi bi-bug text-xl text-blue-900"></i>
+                        </div>
+                        <h3 class="text-lg font-bold">Jira</h3>
+                        <p class="text-sm user-price" data-10-users="$81.50" data-25-users="$203.75" data-50-users="$407.50" data-100-users="$815">10 Users: $81.50/month</p>
+                    </div>
 
-    // Scroll to top button
-    const scrollToTopButton = document.createElement('button');
-    scrollToTopButton.innerHTML = '&#9650;'; // Up arrow symbol
-    scrollToTopButton.className = 'scroll-to-top';
-    scrollToTopButton.style.display = 'none'; // Initially hidden
-    document.body.appendChild(scrollToTopButton);
+                    <!-- ClickUp -->
+                    <div class="integration-card p-4 text-center">
+                        <div class="w-12 h-12 bg-[#7B61FF] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
+                            <i class="bi bi-kanban text-xl text-blue-900"></i>
+                        </div>
+                        <h3 class="text-lg font-bold">ClickUp</h3>
+                        <p class="text-sm user-price" data-10-users="$70" data-25-users="$175" data-50-users="$350" data-100-users="$700">10 Users: $70/month</p>
+                    </div>
 
-    scrollToTopButton.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+                    <!-- Monday.com -->
+                    <div class="integration-card p-4 text-center">
+                        <div class="w-12 h-12 bg-[#4262FF] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
+                            <i class="bi bi-grid-3x3-gap text-xl text-blue-900"></i>
+                        </div>
+                        <h3 class="text-lg font-bold">Monday.com</h3>
+                        <p class="text-sm user-price" data-10-users="$120" data-25-users="$300" data-50-users="$600" data-100-users="$1200">10 Users: $120/month</p>
+                    </div>
 
-    window.addEventListener('scroll', function() {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        scrollToTopButton.style.display = 'block';
-      } else {
-        scrollToTopButton.style.display = 'none';
-      }
-    });
-  });
-  </script>
+                    <!-- Wrike -->
+                    <div class="integration-card p-4 text-center">
+                        <div class="w-12 h-12 bg-[#00C7B7] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
+                            <i class="bi bi-kanban text-xl text-blue-900"></i>
+                        </div>
+                        <h3 class="text-lg font-bold">Wrike</h3>
+                        <p class="text-sm user-price" data-10-users="$98" data-25-users="$245" data-50-users="$490" data-100-users="$980">10 Users: $98/month</p>
+                    </div>
+
+                    <!-- Trello -->
+                    <div class="integration-card p-4 text-center">
+                        <div class="w-12 h-12 bg-[#0079BF] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
+                            <i class="bi bi-columns-gap text-xl text-blue-900"></i>
+                        </div>
+                        <h3 class="text-lg font-bold">Trello</h3>
+                        <p class="text-sm user-price" data-10-users="$50" data-25-users="$125" data-50-users="$250" data-100-users="$500">10 Users: $50/month</p>
+                    </div>
+
+                    <!-- Asana -->
+                    <div class="integration-card p-4 text-center">
+                        <div class="w-12 h-12 bg-[#F44336] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
+                            <i class="bi bi-list-task text-xl text-blue-900"></i>
+                        </div>
+                        <h3 class="text-lg font-bold">Asana</h3>
+                        <p class="text-sm user-price" data-10-users="$110" data-25-users="$275" data-50-users="$550" data-100-users="$1100">10 Users: $110/month</p>
+                    </div>
+                </div>
+
+                <!-- Zigzag Divider -->
+              <!--   <div class="hidden md:block absolute left-1/2 top-0 h-full w-10 transform -translate-x-1/2 z-10">
+                    <div class="shape-zigzag w-full h-full" style="opacity: 0.8;"></div>
+                </div> -->
+
+                <!-- Right Side: TasksMate -->
+                <div class="pricing-card featured p-8 flex flex-col items-center">
+                    <!-- Title, Description, and Price in Row with Space-Between -->
+                    <div class="flex flex-col md:flex-row justify-between items-center w-full mb-6 text-center md:text-left space-y-2 md:space-y-0">
+                        <div>
+                            <h3 class="text-3xl font-bold text-[#FF4F4F]">TasksMate</h3>
+                        <p class="text-sm text-[#FF4F4F]">Your all-in-one productivity solution</p>
+                        </div>
+                        <div class="price-display flex items-center">
+                            <span class="text-3xl font-bold text-[#FF4F4F] user-price" data-10-users="$60" data-25-users="$150" data-50-users="$300" data-100-users="$600">$60</span>
+                            <span class="text-base ml-2 text-[#FF4F4F]">/month</span>
+                        </div>
+                    </div>
+
+                    <!-- Features -->
+                    <ul class="space-y-4 mb-6 w-full">
+                        <li class="flex items-center">
+                            <i class="bi bi-check-circle text-[#7B61FF] text-2xl mr-3"></i>
+                            <span>All premium features included</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="bi bi-check-circle text-[#7B61FF] text-2xl mr-3"></i>
+                            <span>Unlimited integrations</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="bi bi-check-circle text-[#7B61FF] text-2xl mr-3"></i>
+                            <span>24/7 priority support</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="bi bi-check-circle text-[#7B61FF] text-2xl mr-3"></i>
+                            <span>Scalable for any team size</span>
+                        </li>
+                    </ul>
+
+                    <!-- Button -->
+                    <button class="neubrutalism contact-btn text-white px-8 py-3">🚀 Switch to TasksMate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shape shape-circle" style="top: 15%; left: 5%; width: 80px; height: 80px; background-color: #FFE974;"></div>
+    <div class="shape shape-dots" style="bottom: 20%; right: 5%;"></div>
+</section>
+    <!-- Video Section -->
+    <section class="py-16 px-4 relative">
+        <div class="container mx-auto text-center">
+            <div id="video-content"></div>
+        </div>
+        <div class="shape shape-circle" style="top: 30%; left: 8%; width: 70px; height: 70px; background-color: #FFE974;"></div>
+        <div class="shape shape-square" style="bottom: 15%; right: 8%; width: 50px; height: 50px; background-color: #FF4F4F;"></div>
+    </section>
+
+    <!-- Integrations Section -->
+    <section id="integrations" class="py-16 px-4 relative">
+        <div class="container mx-auto">
+            <div id="integrations-content"></div>
+            
+        </div>
+        <div class="shape shape-square" style="top: 30%; left: 5%; width: 40px; height: 40px; background-color: #FFE974;"></div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 px-4 bg-[#F5F5F5] relative">
+        <div class="container mx-auto">
+            <div id="services-content"></div>
+        </div>
+        <div class="shape shape-circle" style="bottom: 10%; right: 10%; width: 100px; height: 100px; background-color: #FF4F4F;"></div>
+        <div class="shape shape-dots" style="top: 0%; left: 5%; width: 150px;"></div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 px-4 relative">
+        <div class="container mx-auto">
+            <div id="features-content"></div>
+            <!-- <div class="text-center mt-12">
+                <button class="neubrutalism info-btn text-white px-8 py-3">📖 Learn More About Features</button>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- Teams Section -->
+    <section id="teams" class="py-16 px-4 bg-[#F5F5F5] relative">
+        <div class="container mx-auto">
+            <div id="teams-content"></div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 px-4 relative">
+        <div class="container mx-auto">
+            <div id="pricing-content"></div>
+            <div class="text-center mt-12">
+                <p class="mb-4">Need a custom plan? We've got you covered.</p>
+                <button class="neubrutalism contact-btn text-white px-8 py-3">Contact Us for Custom Pricing</button>
+            </div>
+        </div>
+        <div class="shape shape-square" style="bottom: 15%; right: 5%; width: 70px; height: 70px; background-color: #FFE974;"></div>
+        <div class="shape shape-circle" style="top: 10%; left: 5%; width: 60px; height: 60px; background-color: #4ECDC4;"></div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16 px-4 bg-[#F5F5F5] relative">
+        <div class="container mx-auto">
+            <div id="benefits-content"></div>
+        </div>
+        <div class="shape shape-circle" style="top: 10%; left: 15%; width: 80px; height: 80px; background-color: #FFE974;"></div>
+        <div class="shape shape-dots" style="bottom: 20%; right: 5%;"></div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-[#FFE974] py-16 px-4 relative">
+        <div class="container mx-auto">
+            <div id="stats-content"></div>
+        </div>
+        <div class="shape shape-square" style="top: 15%; left: 5%; width: 50px; height: 50px; background-color: white;"></div>
+        <div class="shape shape-square" style="bottom: 15%; right: 5%; width: 50px; height: 50px; background-color: #FF4F4F;"></div>
+    </section>
+
+    <!-- Partners Section -->
+    
+    <section id="partners-content" style="padding: 4%;">
+     
+    </section>
+    <!-- Blog Section -->
+    <section id="blog" style="padding: 4%;">
+        <div id="blog-content"></div>
+      </section>
+     <!-- CTA Section (Add Buttons) -->
+     <section class="py-16 px-4 bg-[#F5F5F5] relative">
+        <div class="container mx-auto text-center max-w-3xl">
+            <div id="cta-content">
+                <!-- Existing content assumed here -->
+                <div class="mt-8 flex justify-center gap-4 flex-wrap">
+                    <button class="neubrutalism playstore-btn text-white px-6 py-2 font-medium"><i class="bi bi-google-play mr-2"></i>Play Store</button>
+                    <button class="neubrutalism appstore-btn text-white px-6 py-2 font-medium"><i class="bi bi-apple mr-2"></i>App Store</button>
+                </div>
+            </div>
+        </div>
+        <div class="shape shape-circle" style="bottom: 20%; left: 10%; width: 60px; height: 60px; background-color: #FFE974"></div>
+        <div class="shape shape-square" style="top: 30%; right: 10%; width: 40px; height: 40px; background-color: #FF4F4F;"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-4 relative">
+        <div class="container mx-auto">
+            <div id="about-content"></div>
+        </div>
+        <div class="shape shape-circle" style="top: 20%; right: 8%; width: 80px; height: 80px; background-color: #FFE974;"></div>
+        <div class="shape shape-dots" style="bottom: 10%; left: 5%;"></div>
+    </section>
+
+    <!-- CTA Section -->
+  <!--   <section class="py-16 px-4 bg-[#F5F5F5] relative">
+        <div class="container mx-auto text-center max-w-3xl">
+            <div id="cta-content"></div>
+        </div>
+        <div class="shape shape-circle" style="bottom: 20%; left: 10%; width: 60px; height: 60px; background-color: #FFE974"></div>
+        <div class="shape shape-square" style="top: 30%; right: 10%; width: 40px; height: 40px; background-color: #FF4F4F;"></div>
+    </section> -->
+
+    <!-- Footer -->
+<footer class="bg-[#2E2E2E] text-white py-12 px-4 relative">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="shape shape-circle" style="bottom: 20%; left: 10%; width: 60px; height: 60px; background-color: #FFE974"></div>
+        <div class="shape shape-square" style="top: 30%; right: 10%; width: 40px; height: 40px; background-color: #FF4F4F;"></div>
+        <div>
+            <h3 class="text-xl font-bold mb-4" style="display: flex; text-align: center; align-items: end;">
+                <img class="untitled-2-1-icon" alt="" src="./public/untitled2-1@2x.png" />TasksMate
+            </h3>
+            <p class="mb-4">Simplify work, boost productivity</p>
+            <div class="flex space-x-4">
+                <a href="#" class="hover:text-[#FF4F4F]"><i class="bi bi-twitter text-xl" style="color: #1DA1F2;"></i></a>
+                <a href="https://www.facebook.com/roshansingh1235" class="hover:text-[#FF4F4F]"><i class="bi bi-facebook text-xl" style="color: #1877F2;"></i></a>
+                <a href="#" class="hover:text-[#FF4F4F]"><i class="bi bi-linkedin text-xl" style="color: #0077B5;"></i></a>
+                <a href="https://www.instagram.com/taskmate432/" class="hover:text-[#FF4F4F]"><i class="bi bi-instagram text-xl" style="color: #C13584;"></i></a>
+            </div>
+        </div>
+        <div>
+            <h3 class="text-xl font-bold mb-4">Product</h3>
+            <ul class="space-y-2">
+                <li><a href="#features" class="hover:text-[#FF4F4F]">Features</a></li>
+                <li><a href="#integrations" class="hover:text-[#FF4F4F]">Integrations</a></li>
+                <li><a href="#pricing" class="hover:text-[#FF4F4F]">Pricing</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="text-xl font-bold mb-4">Company</h3>
+            <ul class="space-y-2">
+                <li><a href="#about" class="hover:text-[#FF4F4F]">About Us</a></li>
+                <li><a href="#blog" class="hover:text-[#FF4F4F]">Blog</a></li>
+                <li class="label12"><a href="privacy-policy.html" style="color: green;">Privacy Policy</a></li>
+                <li class="label12"><a href="terms.html" style="color: green;">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="text-xl font-bold mb-4">Support</h3>
+            <ul class="space-y-2">
+                <li><a href="#" class="contact-btn hover:text-[#FF4F4F]">Help Center</a></li> 
+                <li><a href="#" class="contact-btn hover:text-[#FF4F4F]">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container mx-auto mt-8 pt-8 border-t border-gray-700">
+        <p class="text-center">© 2023 TasksMate. All rights reserved.</p>
+    </div>
+</footer>
+
+        <!-- Contact Form Modal -->
+<div class="contact-modal" id="contact-modal">
+    <div class="contact-modal-content p-6" style="margin-top: 10%;">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-2xl font-bold">Get Started with TasksMate</h3>
+            <button class="close-contact-modal text-2xl">&times;</button>
+        </div>
+        <form class="space-y-4">
+            <div>
+                <label class="block mb-2 font-medium">Your Name</label>
+                <input type="text" placeholder="Enter your full name" class="w-full p-3 border-2 border-black focus:outline-none focus:border-[#FF4F4F]">
+            </div>
+            <div>
+                <label class="block mb-2 font-medium">Email Address</label>
+                <input type="email" placeholder="Enter your email address" class="w-full p-3 border-2 border-black focus:outline-none focus:border-[#FF4F4F]">
+            </div>
+            <div>
+                <label class="block mb-2 font-medium">Company Name</label>
+                <input type="text" placeholder="Enter your company name" class="w-full p-3 border-2 border-black focus:outline-none focus:border-[#FF4F4F]">
+            </div>
+            <div>
+                <label class="block mb-2 font-medium">Team Size</label>
+                <select class="w-full p-3 border-2 border-black focus:outline-none focus:border-[#FF4F4F]">
+                    <option>1-5 employees</option>
+                    <option>6-20 employees</option>
+                    <option>21-100 employees</option>
+                    <option>101+ employees</option>
+                </select>
+            </div>
+            <div>
+                <label class="block mb-2 font-medium">Message (Optional)</label>
+                <textarea rows="3" placeholder="Tell us about your needs" class="w-full p-3 border-2 border-black focus:outline-none focus:border-[#FF4F4F]"></textarea>
+            </div>
+            <button type="submit" class="neubrutalism bg-[#FF4F4F] text-white w-full py-3 font-medium">Submit Request</button>
+            <p class="text-sm text-center mt-4">By submitting this form, you agree to our Terms of Service and Privacy Policy.</p>
+        </form>
+    </div>
+    <!-- Video Modal -->
+<div class="video-modal" id="video-modal">
+    <div class="video-modal-content">
+        <div class="flex justify-between items-center bg-white p-4">
+            <h3 class="text-xl font-bold">TasksMate Demo</h3>
+            <button class="close-video-modal text-2xl">&times;</button>
+        </div>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+</div>
+
+    </footer>
+
+    <!-- Team Modals, Contact Modal, Video Modal remain unchanged -->
+    <script  src="script.js" type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+      </script>
+</body>
 </html>

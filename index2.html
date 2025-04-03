@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TasksMate - Simplify Work, Boost Productivity</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #FF4F4F;
+            --secondary: #2E2E2E;
+            --accent: #FFE974;
+            --light: #F5F5F5;
+            --tertiary: #4ECDC4;
+            --quaternary: #7B61FF;
+        }
+        
+        /* Loader styles */
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .loader {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .loader div {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 0;
+            background: var(--primary);
+            border: 3px solid black;
+            animation: loader 1.2s linear infinite;
+        }
+        
+        .loader div:nth-child(1) {
+            top: 8px;
+            left: 8px;
+            animation-delay: 0s;
+        }
+        
+        .loader div:nth-child(2) {
+            top: 8px;
+            left: 32px;
+            animation-delay: -0.4s;
+        }
+        
+        .loader div:nth-child(3) {
+            top: 8px;
+            left: 56px;
+            animation-delay: -0.8s;
+        }
+        
+        .loader div:nth-child(4) {
+            top: 32px;
+            left: 8px;
+            animation-delay: -0.4s;
+        }
+        
+        .loader div:nth-child(5) {
+            top: 32px;
+            left: 32px;
+            animation-delay: -0.8s;
+        }
+        
+        .loader div:nth-child(6) {
+            top: 32px;
+            left: 56px;
+            animation-delay: -1.2s;
+        }
+        
+        .loader div:nth-child(7) {
+            top: 56px;
+            left: 8px;
+            animation-delay: -0.8s;
+        }
+        
+        .loader div:nth-child(8) {
+            top: 56px;
+            left: 32px;
+            animation-delay: -1.2s;
+        }
+        
+        .loader div:nth-child(9) {
+            top: 56px;
+            left: 56px;
+            animation-delay: -1.6s;
+        }
+        
+        @keyframes loader {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+        }
+
+        /* Body styles */
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* Neubrutalism styles */
+        .neubrutalism {
+            border: 3px solid black;
+            box-shadow: 5px 5px 0px black;
+            transition: all 0.2s ease;
+        }
+        
+        .neubrutalism:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0px black;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border: 3px solid black;
+            box-shadow: 5px 5px 0px black;
+            transition: all 0.2s ease;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0px black;
+        }
+
+        .integration-card {
+            background: #ffffff;
+            border: 3px solid black;
+            box-shadow: 5px 5px 0px black;
+            transition: all 0.2s ease;
+            height: 100%;
+        }
+        
+        .integration-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0px black;
+        }
+
+        .stats-card {
+            border: 3px solid black;
+            background: var(--accent);
+            box-shadow: 5px 5px 0px black;
+        }
+        
+        .testimonial-card {
+            border: 3px solid black;
+            background: white;
+            box-shadow: 5px 5px 0px black;
+        }
+
+        .pricing-card {
+            border: 3px solid black;
+            background: white;
+            box-shadow: 5px 5px 0px black;
+            transition: all 0.2s ease;
+            height: 100%;
+        }
+        
+        .pricing-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0px black;
+        }
+
+        .pricing-card.featured {
+            background: var(--accent);
+            transform: scale(1.05);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 100;
+            padding: 2rem;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        /* Team modal */
+        .team-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .team-modal-content {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 3px solid black;
+            box-shadow: 10px 10px 0px black;
+        }
+
+        /* Decorative elements */
+        .shape {
+            position: absolute;
+            z-index: -1;
+        }
+
+        .shape-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--tertiary);
+            border: 3px solid black;
+        }
+
+        .shape-square {
+            width: 100px;
+            height: 100px;
+            background: var(--accent);
+            border: 3px solid black;
+            transform: rotate(45deg);
+        }
+
+        .shape-zigzag {
+            position: absolute;
+            width: 150px;
+            height: 40px;
+            background-image: linear-gradient(45deg, transparent 33.333%, var(--quaternary) 33.333%, var(--quaternary) 66.667%, transparent 66.667%),
+                              linear-gradient(45deg, transparent 33.333%, var(--quaternary) 33.333%, var(--quaternary) 66.667%, transparent 66.667%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px;
+        }
+
+        .shape-dots {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            background-image: radial-gradient(var(--primary) 3px, transparent 3px);
+            background-size: 25px 25px;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 1s ease-in-out;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 1s ease-in-out;
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            0% { transform: translateX(-100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            0% { transform: translateX(100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Loader -->
+    <div id="loader" class="loader-container">
+        <div class="loader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- Decorative shapes -->
+    <div class="shape shape-circle" style="top: 20%; right: 5%;"></div>
+    <div class="shape shape-square" style="bottom: 15%; left: 5%;"></div>
+    <div class="shape shape-zigzag" style="top: 60%; right: 10%;"></div>
+    <div class="shape shape-dots" style="top: 30%; left: 8%;"></div>
+
+    <!-- Navbar -->
+    <nav class="bg-white p-4 border-b-4 border-black sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">TasksMate</h1>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#features" class="hover:text-[#FF4F4F] font-medium">Features</a>
+                <a href="#integrations" class="hover:text-[#FF4F4F] font-medium">Integrations</a>
+                <a href="#services" class="hover:text-[#FF4F4F] font-medium">Services</a>
+                <a href="#teams" class="hover:text-[#FF4F4F] font-medium">Teams</a>
+                <a href="#pricing" class="hover:text-[#FF4F4F] font-medium">Pricing</a>
+                <a href="#about" class="hover:text-[#FF4F4F] font-medium">About</a>
+                <button class="neubrutalism bg-[#FF4F4F] text-white px-6 py-2 font-medium">Get Started</button>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden"><i class="bi bi-list text-3xl"></i></button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="flex justify-between w-full mb-8">
+            <h1 class="text-2xl font-bold">TasksMate</h1>
+            <button id="close-menu"><i class="bi bi-x-lg text-2xl"></i></button>
+        </div>
+        <a href="#features" class="my-4 text-xl hover:text-[#FF4F4F]">Features</a>
+        <a href="#integrations" class="my-4 text-xl hover:text-[#FF4F4F]">Integrations</a>
+        <a href="#services" class="my-4 text-xl hover:text-[#FF4F4F]">Services</a>
+        <a href="#teams" class="my-4 text-xl hover:text-[#FF4F4F]">Teams</a>
+        <a href="#pricing" class="my-4 text-xl hover:text-[#FF4F4F]">Pricing</a>
+        <a href="#about" class="my-4 text-xl hover:text-[#FF4F4F]">About</a>
+        <button class="neubrutalism bg-[#FF4F4F] text-white px-8 py-3 mt-6 w-full max-w-xs">Get Started</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section container mx-auto py-16 px-4 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 relative">
+                <span class="bg-[#FFE974] px-2">Simplify Work,</span> 
+                <span class="relative">
+                    <span class="bg-[#4ECDC4] px-2">Boost Productivity</span>
+                </span>
+            </h1>
+            <p class="text-xl mb-8">The all-in-one workspace for modern teams</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="neubrutalism bg-[#FF4F4F] text-white px-8 py-3 slide-in-left">🚀 Get Started Free</button>
+                <button class="neubrutalism bg-white px-8 py-3 slide-in-right">🎥 Watch Demo</button>
+            </div>
+            <div class="mt-12 neubrutalism p-2 bg-white mx-auto max-w-3xl">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80" 
+                    alt="TasksMate Dashboard" 
+                    class="w-full h-auto object-cover border-2 border-black">
+            </div>
+        </div>
+        
+        <div class="shape shape-circle" style="bottom: -50px; left: 15%; width: 80px; height: 80px; background-color: #7B61FF;"></div>
+        <div class="shape shape-square" style="top: 100px; right: 15%; width: 60px; height: 60px; background-color: #4ECDC4;"></div>
+    </section>
+    
+    <!-- Unlock Collaboration Section -->
+    <section class="py-16 px-4 bg-[#F5F5F5] relative">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="slide-in-left">
+                    <h2 class="text-3xl font-bold mb-6">
+                        <span class="bg-[#7B61FF] text-white px-2">Unlock</span> Seamless Collaboration
+                    </h2>
+                    <p class="text-lg mb-6">Say goodbye to scattered tools and disconnected teams! TasksMate brings everything together with intuitive features designed for smooth teamwork.</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <span class="mr-3 text-xl">✅</span>
+                            <span>Plan & Track Tasks with visual boards</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-xl">✅</span>
+                            <span>Communicate Effectively with built-in messaging</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-xl">✅</span>
+                            <span>Streamline Payments with invoicing tools</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-xl">✅</span>
+                            <span>Work in Sync with document sharing and team collaboration</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="neubrutalism bg-[#FF4F4F] text-white px-8 py-3">🚀 Get Started Free</button>
+                        <button class="neubrutalism bg-white px-8 py-3">🎥 See Demo</button>
+                    </div>
+                </div>
+                <div class="neubrutalism p-1 bg-white slide-in-right">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                        alt="Collaboration Dashboard" 
+                        class="w-full h-full object-cover border-2 border-black">
+                </div>
+            </div>
+        </div>
+        
+        <div class="shape shape-dots" style="bottom: 50px; right: 10%;"></div>
+    </section>
+
+    <!-- Integrations -->
+    <section id="integrations" class="py-16 px-4 relative">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">
+                <span class="bg-[#FFE974] px-2">Integrations</span> & Apps
+            </h2>
+            <p class="text-center max-w-3xl mx-auto mb-12">Supercharge your workflow with seamless integrations. TasksMate connects with your favorite tools, making it easy to plan, create, and collaborate efficiently.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <div class="integration-card p-6 fade-in" style="animation-delay: 0.1s">
+                    <i class="bi bi-brush text-4xl text-[#7B61FF]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Figma</h3>
+                    <p>Design and collaborate effortlessly with Figma's powerful UI/UX tools.</p>
+                </div>
+                <div class="integration-card p-6 fade-in" style="animation-delay: 0.2s">
+                    <i class="bi bi-credit-card text-4xl text-[#4ECDC4]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Stripe</h3>
+                    <p>Accept payments securely with one of the best online payment solutions.</p>
+                </div>
+                <div class="integration-card p-6 fade-in" style="animation-delay: 0.3s">
+                    <i class="bi bi-credit-card-2-front text-4xl text-[#FF4F4F]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">PayPal</h3>
+                    <p>Process secure online transactions with a trusted payment gateway.</p>
+                </div>
+                <div class="integration-card p-6 fade-in" style="animation-delay: 0.4s">
+                    <i class="bi bi-arrow-repeat text-4xl text-[#7B61FF]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Zapier</h3>
+                    <p>Automate repetitive tasks and connect with thousands of apps.</p>
+                </div>
+                <div class="integration-card p-6 fade-in" style="animation-delay: 0.5s">
+                    <i class="bi bi-code-square text-4xl text-[#4ECDC4]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Pipedream</h3>
+                    <p>Build powerful event-driven workflows without complex coding.</p>
+                </div>
+                <div class="integration-card p-6 fade-in" style="animation-delay: 0.6s">
+                    <i class="bi bi-camera text-4xl text-[#FF4F4F]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Lightshot</h3>
+                    <p>Capture and share screenshots quickly for better communication.</p>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="neubrutalism bg-white px-8 py-3">View All Integrations</button>
+            </div>
+        </div>
+        
+        <div class="shape shape-square" style="top: 30%; left: 5%; width: 40px; height: 40px; background-color: #FFE974;"></div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-16 px-4 bg-[#F5F5F5] relative">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">
+                <span class="bg-[#4ECDC4] text-white px-2">Services</span>
+            </h2>
+            <p class="text-center max-w-3xl mx-auto mb-12">At TasksMate, we offer a suite of services to help businesses, freelancers, and teams stay organized and productive.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12">
+                <div class="neubrutalism p-1 bg-white slide-in-left">
+                    <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=80" 
+                        alt="AI Phone Agent" 
+                        class="w-full h-full object-cover border-2 border-black">
+                </div>
+                <div class="slide-in-right">
+                    <h3 class="text-2xl font-bold mb-4">
+                        <span class="bg-[#FF4F4F] text-white px-2">AI Phone Agent</span>
+                    </h3>
+                    <p class="mb-4">Our advanced AI phone agent handles customer queries, schedules appointments, and provides information 24/7 without human intervention.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-start">
+                            <span class="mr-3 text-xl">•</span>
+                            <span>Natural conversation flows with voice recognition</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-xl">•</span>
+                            <span>Seamless integration with your existing systems</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-xl">•</span>
+                            <span>Customized responses based on your business needs</span>
+                        </li>
+                    </ul>
+                    <button class="neubrutalism bg-[#FF4F4F] text-white px-6 py-2">Learn More</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12">
+                <div class="slide-in-left order-2 md:order-1">
+                    <h3 class="text-2xl font-bold mb-4">
+                        <span class="bg-[#7B61FF] text-white px-2">AI Chat Agent</span>
+                    </h3>
+                    <p class="mb-4">Enhance customer support with intelligent chat agents that understand context and provide accurate, helpful responses instantly.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-start">
+                            <span class="mr-3 text-xl">•</span>
+                            <span>24/7 instant responses to customer inquiries</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-xl">•</span>
+                            <span>Multilingual support for global customers</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-xl">•</span>
+                            <span>Contextual understanding with machine learning</span>
+                        </li>
+                    </ul>
+                    <button class="neubrutalism bg-[#7B61FF] text-white px-6 py-2">Learn More</button>
+                </div>
+                <div class="neubrutalism p-1 bg-white slide-in-right order-1 md:order-2">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=80" 
+                        alt="AI Chat Agent" 
+                        class="w-full h-full object-cover border-2 border-black">
+                </div>
+            </div>
+            
+            <h3 class="text-2xl font-bold text-center mb-8">
+                <span class="bg-[#FFE974] px-2">More Services</span>
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="feature-card p-6">
+                    <i class="bi bi-kanban text-4xl text-[#FF4F4F]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Project Management</h3>
+                    <p>Plan, track, and execute projects with ease. Organize tasks visually with intuitive boards.</p>
+                </div>
+                <div class="feature-card p-6">
+                    <i class="bi bi-lightning text-4xl text-[#4ECDC4]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Task Automation</h3>
+                    <p>Automate repetitive tasks and focus on what matters. Save time with smart workflows.</p>
+                </div>
+                <div class="feature-card p-6">
+                    <i class="bi bi-clock text-4xl text-[#7B61FF]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Time Tracking</h3>
+                    <p>Monitor work hours, optimize efficiency and track productivity across projects and teams.</p>
+                </div>
+                <div class="feature-card p-6">
+                    <i class="bi bi-people text-4xl text-[#FF4F4F]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Team Collaboration</h3>
+                    <p>Communicate, share files, and work together seamlessly no matter where you are.</p>
+                </div>
+                <div class="feature-card p-6">
+                    <i class="bi bi-cash-coin text-4xl text-[#4ECDC4]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Invoicing & Payments</h3>
+                    <p>Manage billing, track payments, and simplify transactions for clients and projects.</p>
+                </div>
+                <div class="feature-card p-6">
+                    <i class="bi bi-person-badge text-4xl text-[#7B61FF]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Client Portal</h3>
+                    <p>Provide clients with direct access to project progress, files, and updates.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="shape shape-circle" style="bottom: 10%; right: 10%; width: 100px; height: 100px; background-color: #FF4F4F; opacity: 0.5;"></div>
+        <div class="shape shape-dots" style="top: 20%; left: 5%; width: 150px;"></div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-16 px-4 relative">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">
+                <span class="bg-[#FF4F4F] text-white px-2">Powerful</span> Features
+            </h2>
+            <p class="text-center max-w-3xl mx-auto mb-12">TasksMate combines an elegant UI with high-performance tools to streamline your workflow.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="feature-card p-6 fade-in" style="animation-delay: 0.1s">
+                    <i class="bi bi-kanban text-3xl text-[#FF4F4F]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Task Boards</h3>
+                    <p>Organize tasks visually with intuitive boards and custom workflows.</p>
+                </div>
+                <div class="feature-card p-6 fade-in" style="animation-delay: 0.2s">
+                    <i class="bi bi-chat-dots text-3xl text-[#4ECDC4]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Messaging</h3>
+                    <p>Keep your team connected with built-in chat and notifications.</p>
+                </div>
+                <div class="feature-card p-6 fade-in" style="animation-delay: 0.3s">
+                    <i class="bi bi-clock-history text-3xl text-[#7B61FF]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Time Tracking</h3>
+                    <p>Monitor work hours effortlessly across projects and team members.</p>
+                </div>
+                <div class="feature-card p-6 fade-in" style="animation-delay: 0.4s">
+                    <i class="bi bi-folder text-3xl text-[#FFE974]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">File Storage</h3>
+                    <p>Store and share files securely with your team and clients.</p>
+                </div>
+                <div class="feature-card p-6 fade-in" style="animation-delay: 0.5s">
+                    <i class="bi bi-people-fill text-3xl text-[#FF4F4F]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Team Collaboration</h3>
+                    <p>Work together seamlessly from anywhere in the world.</p>
+                </div>
+                <div class="feature-card p-6 fade-in" style="animation-delay: 0.6s">
+                    <i class="bi bi-receipt text-3xl text-[#4ECDC4]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Invoicing & Payments</h3>
+                    <p>Automate billing and track transactions with clients.</p>
+                </div>
+                <div class="feature-card p-6 fade-in" style="animation-delay: 0.7s">
+                    <i class="bi bi-person-badge text-3xl text-[#7B61FF]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Client Portal</h3>
+                    <p>Provide clients with direct access to project updates.</p>
+                </div>
+                <div class="feature-card p-6 fade-in" style="animation-delay: 0.8s">
+                    <i class="bi bi-plug text-3xl text-[#FFE974]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Integrations</h3>
+                    <p>Connect with the tools you love for a unified workflow.</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="neubrutalism bg-white px-8 py-3">📖 Learn More About Features</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Teams Section -->
+    <section id="teams" class="py-16 px-4 bg-[#F5F5F5] relative">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">
+                <span class="bg-[#7B61FF] text-white px-2">Teams</span>
+            </h2>
+            <p class="text-center max-w-3xl mx-auto mb-12">No matter your team's size or industry, TasksMate is built to empower collaboration and efficiency.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card p-6 team-btn cursor-pointer" data-team="business">
+                    <i class="bi bi-building text-4xl text-[#FF4F4F]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Small Businesses & Startups</h3>
+                    <p>Stay agile and manage projects effortlessly while keeping your team aligned.</p>
+                    <button class="mt-4 text-[#FF4F4F] font-medium">Meet the team →</button>
+                </div>
+                <div class="feature-card p-6 team-btn cursor-pointer" data-team="enterprise">
+                    <i class="bi bi-buildings text-4xl text-[#4ECDC4]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Enterprises</h3>
+                    <p>Organize large-scale projects with advanced tracking and resource allocation.</p>
+                    <button class="mt-4 text-[#4ECDC4] font-medium">Meet the team →</button>
+                </div>
+                <div class="feature-card p-6 team-btn cursor-pointer" data-team="freelance">
+                    <i class="bi bi-person-workspace text-4xl text-[#7B61FF]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Freelancers</h3>
+                    <p>Keep track of tasks, invoices, and client projects in one streamlined place.</p>
+                    <button class="mt-4 text-[#7B61FF] font-medium">Meet the team →</button>
+                </div>
+                <div class="feature-card p-6 team-btn cursor-pointer" data-team="marketing">
+                    <i class="bi bi-graph-up-arrow text-4xl text-[#FF4F4F]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Marketing & Agencies</h3>
+                    <p>Plan campaigns, manage content, and collaborate with clients seamlessly.</p>
+                    <button class="mt-4 text-[#FF4F4F] font-medium">Meet the team →</button>
+                </div>
+                <div class="feature-card p-6 team-btn cursor-pointer" data-team="it">
+                    <i class="bi bi-code-slash text-4xl text-[#4ECDC4]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">IT & Software Teams</h3>
+                    <p>Organize sprints, track bugs, and manage releases efficiently.</p>
+                    <button class="mt-4 text-[#4ECDC4] font-medium">Meet the team →</button>
+                </div>
+                <div class="feature-card p-6 team-btn cursor-pointer" data-team="custom">
+                    <i class="bi bi-rocket-takeoff text-4xl text-[#7B61FF]"></i>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Custom Solutions</h3>
+                    <p>Tailor TasksMate to fit your specific industry needs and workflows.</p>
+                    <button class="mt-4 text-[#7B61FF] font-medium">Meet the team →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Modals -->
+    <div id="team-modal-business" class="team-modal">
+        <div class="team-modal-content p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Small Business Team</h3>
+                <button class="close-modal text-2xl">&times;</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="neubrutalism p-4 text-center">
+                    <div class="w-24 h-24 rounded-full bg-[#FFE974] mx-auto mb-4 flex items-center justify-center">
+                        <i class="bi bi-person-fill text-4xl"></i>
+                    </div>
+                    <h4 class="font-bold">Sarah Johnson</h4>
+                    <p>Product Manager</p>
+                </div>
+                <div class="neubrutalism p-4 text-center">
+                    <div class="w-24 h-24 rounded-full bg-[#4ECDC4] mx-auto mb-4 flex items-center justify-center">
+                        <i class="bi bi-person-fill text-4xl"></i>
+                    </div>
+                    <h4 class="font-bold">David Chen</h4>
+                    <p>Lead Developer</p>
+                </div>
+                <div class="neubrutalism p-4 text-center">
+                    <div class="w-24 h-24 rounded-full bg-[#FF4F4F] mx-auto mb-4 flex items-center justify-center">
+                        <i class="bi bi-person-fill text-4xl"></i>
+                    </div>
+                    <h4 class="font-bold">Alex Rivera</h4>
+                    <p>Marketing Specialist</p>
+                </div>
+            </div>
+            <p class="mt-8 mb-4">Our small business team specializes in helping startups and growing businesses streamline their workflows, manage projects effectively, and scale operations efficiently.</p>
+            <button class="neubrutalism bg-[#FF4F4F] text-white px-6 py-2 mt-4">Get in Touch</button>
+        </div>
+    </div>
+
+    <div id="team-modal-enterprise" class="team-modal">
+        <div class="team-modal-content p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Enterprise Team</h3>
+                <button class="close-modal text-2xl">&times;</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="neubrutalism p-4 text-center">
+                    <div class="w-24 h-24 rounded-full bg-[#4ECDC4] mx-auto mb-4 flex items-center justify-center">
+                        <i class="bi bi-person-fill text-4xl"></i>
+                    </div>
+                    <h4 class="font-bold">Michael Stewart</h4>
+                    <p>Enterprise Solutions Director</p>
+                </div>
+                <div class="neubrutalism p-4 text-center">
+                    <div class="w-24 h-24 rounded-full bg-[#7B61FF] mx-auto mb-4 flex items-center justify-center">
+                        <i class="bi bi-person-fill text-4xl"></i>
+                    </div>
+                    <h4 class="font-bold">Jennifer Lee</h4>
+                    <p>Senior Project Manager</p>
+                </div>
+                <div class="neubrutalism p-4 text-center">
+                    <div class="w-24 h-24 rounded-full bg-[#FFE974] mx-auto mb-4 flex items-center justify-center">
+                        <i class="bi bi-person-fill text-4xl"></i>
+                    </div>
+                    <h4 class="font-bold">Robert Kim</h4>
+                    <p>Implementation Specialist</p>
+                </div>
+                <div class="neubrutalism p-4 text-center">
+                    <div class="w-24 h-24 rounded-full bg-[#FF4F4F] mx-auto mb-4 flex items-center justify-center">
+                        <i class="bi bi-person-fill text-4xl"></i>
+                    </div>
+                    <h4 class="font-bold">Lisa Martinez</h4>
+                    <p>Customer Success Manager</p>
+                </div>
+            </div>
+            <p class="mt-8 mb-4">Our enterprise team has extensive experience managing large-scale implementations, ensuring seamless integrations with existing systems, and providing ongoing support for complex organizational needs.</p>
+            <button class="neubrutalism bg-[#4ECDC4] text-white px-6 py-2 mt-4">Schedule a Consultation</button>
+        </div>
+    </div>
+
+    <!-- Similar modals for other teams -->
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 px-4 relative">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">
+                <span class="bg-[#4ECDC4] text-white px-2">Pricing</span> Plans
+            </h2>
+            <p class="text-center max-w-3xl mx-auto mb-12">Choose the perfect plan for your team's needs. All plans include core features with premium options for growing teams.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="pricing-card p-6">
+                    <h3 class="text-2xl font-bold mb-2">Starter</h3>
+                    <p class="mb-4">Perfect for individuals and small teams</p>
+                    <div class="text-4xl font-bold mb-4">$9<span class="text-xl font-normal">/month</span></div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <span class="mr-3 text-green-600">✓</span>
+                            <span>Up to 5 team members</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-green-600">✓</span>
+                            <span>5GB storage</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-green-600">✓</span>
+                            <span>Basic task management</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-green-600">✓</span>
+                            <span>Team messaging</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-gray-400">✗</span>
+                            <span class="text-gray-500">Time tracking</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-gray-400">✗</span>
+                            <span class="text-gray-500">Client portal</span>
+                        </li>
+                    </ul>
+                    <button class="neubrutalism bg-white w-full py-3 font-medium">Get Started</button>
+                </div>
+                
+                <div class="pricing-card p-6 featured">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-2xl font-bold">Professional</h3>
+                        <span class="bg-[#FF4F4F] text-white text-xs font-bold px-2 py-1">POPULAR</span>
+                    </div>
+                    <p class="mb-4">Ideal for growing teams and businesses</p>
+                    <div class="text-4xl font-bold mb-4">$29<span class="text-xl font-normal">/month</span></div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <span class="mr-3 text-green-600">✓</span>
+                            <span>Up to 20 team members</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-green-600">✓</span>
+                            <span>25GB storage</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-green-600">✓</span>
+                            <span>Advanced task management</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-green-600">✓</span>
+                            <span>Team messaging</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-green-600">✓</span>
+                            <span>Time tracking</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-green-600">✓</span>
+                            <span>Basic client portal</span>
+                        </li>
+                    </ul>
+                    <button class="neubrutalism bg-[#FF4F4F] text-white w-full py-3 font-medium">Get Started</button>
+                </div>
+                
+                <div class="pricing-card p-6">
+                    <h3 class="text-2xl font-bold mb-2">Enterprise</h3>
+                    <p class="mb-4">Advanced features for large organizations</p>
+                    <div class="text-4xl font-bold mb-4">$79<span class="text-xl font-normal">/month</span></div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <span class="mr-3 text-green-600">✓</span>
+                            <span>Unlimited team members</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-green-600">✓</span>
+                            <span>100GB storage</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-green-600">✓</span>
+                            <span>Premium task management</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-green-600">✓</span>
+                            <span>Advanced team collaboration</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-green-600">✓</span>
+                            <span>Advanced time tracking</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-green-600">✓</span>
+                            <span>Custom client portal</span>
+                        </li>
+                    </ul>
+                    <button class="neubrutalism bg-white w-full py-3 font-medium">Contact Sales</button>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="mb-4">Need a custom plan? We've got you covered.</p>
+                <button class="neubrutalism bg-[#7B61FF] text-white px-8 py-3">Contact Us for Custom Pricing</button>
+            </div>
+        </div>
+        
+        <div class="shape shape-square" style="bottom: 15%; right: 5%; width: 70px; height: 70px; background-color: #FFE974;"></div>
+        <div class="shape shape-circle" style="top: 10%; left: 5%; width: 60px; height: 60px; background-color: #4ECDC4;"></div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16 px-4 bg-[#F5F5F5] relative">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">
+                <span class="bg-[#7B61FF] text-white px-2">With TasksMate</span>, You Get:
+            </h2>
+            <p class="text-center max-w-3xl mx-auto mb-12">Experience complete control with a real-time dashboard, empowering you to make informed decisions quickly.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="feature-card p-6 slide-in-left">
+                    <h3 class="text-xl font-bold mb-4">Project Oversight</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="mr-3">📌</span>
+                            <span>Unified Project Dashboard – Get a centralized view of all projects and tasks</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3">📌</span>
+                            <span>Milestone & Deadline Tracking – Stay on schedule and meet goals efficiently</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3">📌</span>
+                            <span>Task Prioritization – Focus on what matters most with smart sorting</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3">📌</span>
+                            <span>Custom Task Status – Define workflows that match your unique needs</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="feature-card p-6 slide-in-right">
+                    <h3 class="text-xl font-bold mb-4">Why Choose TasksMate?</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-green-600 mr-3">✔</span>
+                            <span>Seamless Collaboration – Work together effortlessly with team-focused tools</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-600 mr-3">✔</span>
+                            <span>Total Transparency – Keep track of project progress with real-time updates</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-600 mr-3">✔</span>
+                            <span>Integration & Automation – Connect your favorite apps and automate workflows</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-600 mr-3">✔</span>
+                            <span>Centralized Dashboard – Get real-time tracking of all your projects</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="shape shape-dots" style="bottom: 20%; right: 5%;"></div>
+    </section>
+
+    <!-- Stats -->
+    <section class="bg-[#FFE974] py-16 px-4 relative">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">
+                <span class="bg-black text-white px-2">Trusted by Teams</span> Everywhere
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="stats-card p-6 text-center">
+                    <h3 class="text-4xl font-bold mb-4">3.2x</h3>
+                    <p class="text-lg">Increase in Client Satisfaction</p>
+                </div>
+                <div class="stats-card p-6 text-center">
+                    <h3 class="text-4xl font-bold mb-4">28%</h3>
+                    <p class="text-lg">Faster Project Delivery</p>
+                </div>
+                <div class="stats-card p-6 text-center">
+                    <h3 class="text-4xl font-bold mb-4">32%</h3>
+                    <p class="text-lg">Less Administrative Work</p>
+                </div>
+                <div class="stats-card p-6 text-center">
+                    <h3 class="text-4xl font-bold mb-4">42%</h3>
+                    <p class="text-lg">Lower Overhead Costs</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="testimonial-card p-6 slide-in-left">
+                    <p class="text-lg mb-4 italic">"TasksMate has transformed our project management! Everything from workflows to client communications is now in one place."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-[#4ECDC4] mr-4 border-2 border-black flex items-center justify-center">
+                            <i class="bi bi-person-fill text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Angelo Austin</h4>
+                            <p>CEO, Austin Media Group</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card p-6 slide-in-right">
+                    <p class="text-lg mb-4 italic">"Our efficiency improved by 28% since using TasksMate. We now execute projects exceeding €10M+ seamlessly."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-[#7B61FF] mr-4 border-2 border-black flex items-center justify-center">
+                            <i class="bi bi-person-fill text-xl text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Maitrik Katariya</h4>
+                            <p>CEO, Armakuni</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="shape shape-square" style="top: 15%; left: 5%; width: 50px; height: 50px; background-color: white;"></div>
+        <div class="shape shape-square" style="bottom: 15%; right: 5%; width: 50px; height: 50px; background-color: #FF4F4F;"></div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about" class="py-16 px-4 relative">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">
+                <span class="bg-[#FF4F4F] text-white px-2">About</span> Us
+            </h2>
+            <p class="text-center max-w-3xl mx-auto mb-12">At TasksMate, we believe that productivity should be simple, intuitive, and powerful.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="slide-in-left">
+                    <p class="mb-6 text-lg">Our mission is to provide teams with the best project management and collaboration platform, merging a stunning UI with high-performance functionality.</p>
+                    <ul class="space-y-4 mb-6">
+                        <li class="flex items-start">
+                            <span class="mr-3 text-[#FF4F4F]">🔹</span>
+                            <span>Crafted with meticulous detail – Every feature is designed to enhance workflow</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-[#FF4F4F]">🔹</span>
+                            <span>Built for efficiency – Speed up projects with automation and smart tools</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-[#FF4F4F]">🔹</span>
+                            <span>Driven by innovation – Constantly evolving to meet modern work demands</span>
+                        </li>
+                    </ul>
+                    <p class="text-lg font-medium">Join thousands of professionals using TasksMate to stay ahead!</p>
+                </div>
+                <div class="neubrutalism p-1 bg-white slide-in-right">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                        alt="Our Team" 
+                        class="w-full h-full object-cover border-2 border-black">
+                </div>
+            </div>
+        </div>
+        
+        <div class="shape shape-circle" style="top: 20%; right: 8%; width: 80px; height: 80px; background-color: #FFE974;"></div>
+        <div class="shape shape-dots" style="bottom: 10%; left: 5%;"></div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="py-16 px-4 bg-[#F5F5F5] relative">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">
+                <span class="bg-[#4ECDC4] text-white px-2">Our</span> Partners
+            </h2>
+            <p class="text-center max-w-3xl mx-auto mb-12">We collaborate with industry leaders to deliver the best experience for our users.</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                <div class="bg-white p-6 flex items-center justify-center neubrutalism fade-in" style="animation-delay: 0.1s">
+                    <i class="bi bi-stripe text-5xl text-[#7B61FF]"></i>
+                </div>
+                <div class="bg-white p-6 flex items-center justify-center neubrutalism fade-in" style="animation-delay: 0.2s">
+                    <i class="bi bi-paypal text-5xl text-[#4ECDC4]"></i>
+                </div>
+                <div class="bg-white p-6 flex items-center justify-center neubrutalism fade-in" style="animation-delay: 0.3s">
+                    <i class="bi bi-microsoft text-5xl text-[#FF4F4F]"></i>
+                </div>
+                <div class="bg-white p-6 flex items-center justify-center neubrutalism fade-in" style="animation-delay: 0.4s">
+                    <i class="bi bi-google text-5xl text-[#FFE974]"></i>
+                </div>
+            </div>
+            
+            <div class="bg-white neubrutalism p-8 max-w-3xl mx-auto text-center">
+                <h3 class="text-xl font-bold mb-4">AI Integration Partners</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <div class="p-4">
+                        <i class="bi bi-robot text-4xl text-[#7B61FF]"></i>
+                        <p class="mt-2">GPT</p>
+                    </div>
+                    <div class="p-4">
+                        <i class="bi bi-mic text-4xl text-[#4ECDC4]"></i>
+                        <p class="mt-2">Vapi</p>
+                    </div>
+                    <div class="p-4">
+                        <i class="bi bi-cpu text-4xl text-[#FF4F4F]"></i>
+                        <p class="mt-2">Ollama</p>
+                    </div>
+                    <div class="p-4">
+                        <i class="bi bi-phone text-4xl text-[#FFE974]"></i>
+                        <p class="mt-2">AI Phone</p>
+                    </div>
+                </div>
+                <p>TasksMate leverages cutting-edge AI technologies to enhance productivity and streamline workflows.</p>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="font-medium mb-6">Want to partner with us? Get in touch</p>
+                <button class="neubrutalism bg-white px-8 py-3">🤝 Partner With Us</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 px-4 relative">
+        <div class="container mx-auto text-center max-w-3xl">
+            <h2 class="text-3xl font-bold mb-6">
+                <span class="bg-[#7B61FF] text-white px-2">Join the Future</span> of Work with TasksMate!
+            </h2>
+            <p class="text-xl mb-8">Thousands of teams trust TasksMate to streamline their projects, reduce manual work, and boost productivity.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="neubrutalism bg-[#FF4F4F] text-white px-8 py-3 bounce">🚀 Get Started Free</button>
+                <button class="neubrutalism bg-white px-8 py-3">🎥 Watch Demo</button>
+            </div>
+        </div>
+        
+        <div class="shape shape-circle" style="bottom: 20%; left: 10%; width: 60px; height: 60px; background-color: #FFE974;"></div>
+        <div class="shape shape-square" style="top: 30%; right: 10%; width: 40px; height: 40px; background-color: #FF4F4F;"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#2E2E2E] text-white py-12 px-4 relative">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-4">TasksMate</h3>
+                <p class="mb-4">Simplify work, boost productivity</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-[#FF4F4F]"><i class="bi bi-twitter text-xl"></i></a>
+                    <a href="#" class="hover:text-[#FF4F4F]"><i class="bi bi-facebook text-xl"></i></a>
+                    <a href="#" class="hover:text-[#FF4F4F]"><i class="bi bi-linkedin text-xl"></i></a>
+                    <a href="#" class="hover:text-[#FF4F4F]"><i class="bi bi-instagram text-xl"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Product</h3>
+                <ul class="space-y-2">
+                    <li><a href="#features" class="hover:text-[#FF4F4F]">Features</a></li>
+                    <li><a href="#integrations" class="hover:text-[#FF4F4F]">Integrations</a></li>
+                    <li><a href="#pricing" class="hover:text-[#FF4F4F]">Pricing</a></li>
+                    <li><a href="#" class="hover:text-[#FF4F4F]">Changelog</a></li>
+                    <li><a href="#" class="hover:text-[#FF4F4F]">Roadmap</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Company</h3>
+                <ul class="space-y-2">
+                    <li><a href="#about" class="hover:text-[#FF4F4F]">About Us</a></li>
+                    <li><a href="#" class="hover:text-[#FF4F4F]">Careers</a></li>
+                    <li><a href="#" class="hover:text-[#FF4F4F]">Blog</a></li>
+                    <li><a href="#" class="hover:text-[#FF4F4F]">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-[#FF4F4F]">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Support</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-[#FF4F4F]">Help Center</a></li>
+                    <li><a href="#" class="hover:text-[#FF4F4F]">Community</a></li>
+                    <li><a href="#" class="hover:text-[#FF4F4F]">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-[#FF4F4F]">Status</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto mt-8 pt-8 border-t border-gray-700">
+            <p class="text-center">© 2023 TasksMate. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Page loader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loader').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+        });
+        
+        closeMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Team modals
+        const teamButtons = document.querySelectorAll('.team-btn');
+        const teamModals = document.querySelectorAll('.team-modal');
+        const closeModalButtons = document.querySelectorAll('.close-modal');
+        
+        teamButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const teamType = this.getAttribute('data-team');
+                const modal = document.getElementById(`team-modal-${teamType}`);
+                if (modal) {
+                    modal.style.display = 'flex';
+                }
+                
+                // For teams that don't have specific modals yet, show the business team modal as default
+                if (!modal && document.getElementById('team-modal-business')) {
+                    document.getElementById('team-modal-business').style.display = 'flex';
+                }
+            });
+        });
+        
+        closeModalButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.closest('.team-modal').style.display = 'none';
+            });
+        });
+        
+        // Close modal when clicking outside content
+        teamModals.forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+        
+        const fadeObserver = new IntersectionObserver(observerCallback, observerOptions);
+        
+        document.querySelectorAll('.feature-card, .integration-card, .stats-card, .testimonial-card, .pricing-card').forEach(card => {
+            if (!card.classList.contains('fade-in') && !card.classList.contains('slide-in-left') && !card.classList.contains('slide-in-right')) {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                fadeObserver.observe(card);
+            }
+        });
+    </script>
+</body>
+</html>

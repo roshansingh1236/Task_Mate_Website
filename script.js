@@ -1,10 +1,13 @@
 import {
   collection,
+  doc,
+  getDoc,
   getDocs,
   getFirestore,
+  setDoc,
+  updateDoc,
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-// Add Firebase initialization at the top of your script (before other code)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 
 // Your Firebase configuration object
@@ -498,6 +501,42 @@ function renderHero() {
   document.getElementById("hero-content").innerHTML = content;
 }
 
+// Function to update visitor count
+async function updateVisitorCount() {
+  try {
+    const visitorDocRef = doc(db, "visitors", "visitorCount");
+    const visitorDoc = await getDoc(visitorDocRef);
+
+    if (!visitorDoc.exists()) {
+      console.log(
+        "Document does not exist. Creating a new document with count 1."
+      );
+      await setDoc(visitorDocRef, { count: 1 });
+      document.getElementById("visitor-count").textContent = 1;
+    } else {
+      console.log("Document exists. Current count:", visitorDoc.data().count);
+      if (!localStorage.getItem("visited")) {
+        const currentCount = visitorDoc.data().count;
+        const newCount = currentCount + 1;
+
+        console.log("New visitor. Updating count to:", newCount);
+        await updateDoc(visitorDocRef, { count: newCount });
+        document.getElementById("visitor-count").textContent = newCount;
+        localStorage.setItem("visited", "true");
+      } else {
+        console.log(
+          "Returning visitor. Count remains:",
+          visitorDoc.data().count
+        );
+        document.getElementById("visitor-count").textContent =
+          visitorDoc.data().count;
+      }
+    }
+  } catch (error) {
+    console.error("Error updating visitor count:", error);
+  }
+}
+
 function renderCollaboration() {
   const content = `
         <div class="slide-in-left">
@@ -649,36 +688,6 @@ function renderTeams() {
   document.getElementById("teams-content").innerHTML = content;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Existing code (e.g., subscription toggle) remains here
-
-  // Play Store and App Store Buttons
-  const playstoreButtons = document.querySelectorAll(".playstore-btn");
-  const appstoreButtons = document.querySelectorAll(".appstore-btn");
-  const snackbar = document.getElementById("snackbar");
-
-  function showSnackbar() {
-    snackbar.classList.remove("hidden");
-    setTimeout(() => {
-      snackbar.classList.add("hidden");
-    }, 3000); // Hide after 3 seconds
-  }
-
-  playstoreButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      e.preventDefault();
-      showSnackbar();
-    });
-  });
-
-  appstoreButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      e.preventDefault();
-      showSnackbar();
-    });
-  });
-});
-
 function renderPricing() {
   const content = `
         <h2 class="text-3xl font-bold text-center mb-4">
@@ -827,7 +836,92 @@ function renderStats() {
 document.addEventListener("DOMContentLoaded", () => {
   const cursor = document.querySelector(".custom-cursor");
   const cursorFollower = document.querySelector(".cursor-follower");
+  const cookieBanner = document.getElementById("cookie-banner");
+  const acceptCookiesButton = document.getElementById("accept-cookies");
+  const playstoreButtons = document.querySelectorAll(".playstore-btn");
+  const appstoreButtons = document.querySelectorAll(".appstore-btn");
+  const dialog = document.getElementById("neubrutalism-dialog");
+  const closeDialogButton = document.getElementById("close-dialog");
 
+  // Function to show the dialog
+  function showDialog() {
+    dialog.classList.remove("hidden");
+  }
+
+  // Function to hide the dialog
+  function hideDialog() {
+    dialog.classList.add("hidden");
+  }
+
+  playstoreButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      showDialog();
+    });
+  });
+
+  appstoreButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      showDialog();
+    });
+  });
+
+  // Close the dialog when the close button is clicked
+  closeDialogButton.addEventListener("click", hideDialog);
+
+  // Close the dialog when clicking outside the dialog content
+  dialog.addEventListener("click", (e) => {
+    if (e.target === dialog) {
+      hideDialog();
+    }
+  });
+  // Check if cookies have been accepted
+  const isAccepted = localStorage.getItem("cookieAccepted");
+
+  // Hide the banner by default
+  cookieBanner.style.display = "none";
+
+  // Only show the banner if cookies have not been accepted
+  if (isAccepted !== "yes") {
+    cookieBanner.style.display = "block";
+  }
+
+  // Add event listener for accepting cookies
+  if (acceptCookiesButton) {
+    acceptCookiesButton.addEventListener("click", () => {
+      // Save acceptance to localStorage
+      localStorage.setItem("cookieAccepted", "yes");
+      // Hide the banner
+      cookieBanner.style.display = "none";
+    });
+  }
+
+  const subscriptionToggles = document.querySelectorAll(".subscription-toggle");
+  const priceElements = document.querySelectorAll(".user-price");
+
+  subscriptionToggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      // Remove active class and reset styles from all buttons
+      subscriptionToggles.forEach((btn) => {
+        btn.classList.remove("active");
+        btn.style.transform = ""; // Reset transform
+        btn.style.boxShadow = ""; // Reset shadow
+      });
+
+      // Add active class and highlight styles to clicked button
+      toggle.classList.add("active");
+      toggle.style.transform = "translate(-2px, -2px)";
+      toggle.style.boxShadow = "var(--glossy-shadow), 7px 7px 0px var(--black)";
+
+      const userCount = toggle.dataset.users;
+
+      priceElements.forEach((price) => {
+        const newPrice = price.dataset[`${userCount}Users`];
+        price.textContent = `${newPrice}/month`;
+      });
+    });
+  });
   function updateCursorVisibility() {
     if (window.innerWidth <= 768) {
       // Adjust the width as needed for mobile
@@ -872,33 +966,6 @@ window.addEventListener("scroll", () => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const subscriptionToggles = document.querySelectorAll(".subscription-toggle");
-  const priceElements = document.querySelectorAll(".user-price");
-
-  subscriptionToggles.forEach((toggle) => {
-    toggle.addEventListener("click", () => {
-      // Remove active class and reset styles from all buttons
-      subscriptionToggles.forEach((btn) => {
-        btn.classList.remove("active");
-        btn.style.transform = ""; // Reset transform
-        btn.style.boxShadow = ""; // Reset shadow
-      });
-
-      // Add active class and highlight styles to clicked button
-      toggle.classList.add("active");
-      toggle.style.transform = "translate(-2px, -2px)";
-      toggle.style.boxShadow = "var(--glossy-shadow), 7px 7px 0px var(--black)";
-
-      const userCount = toggle.dataset.users;
-
-      priceElements.forEach((price) => {
-        const newPrice = price.dataset[`${userCount}Users`];
-        price.textContent = `${newPrice}/month`;
-      });
-    });
-  });
-});
 async function renderPartners() {
   const partnersSection = document.getElementById("partners-content");
   try {
@@ -937,7 +1004,8 @@ async function renderPartners() {
         </div>
       </div>
       <div class="text-center mt-12">
-        <button class="neubrutalism  text-white px-8 py-3 contact-btn">🤝 Partner With Us</button>
+        <button class="neubrutalism  text-white px-8 py-3 contact-btn" style="margin-bottom: 20px">🤝 Partner With Us</button>
+         
       </div>
     `;
     partnersSection.innerHTML = content;
@@ -1000,7 +1068,7 @@ async function renderBlog() {
           .join("")}
       </div>
        <div class="text-center mt-12">
-        <button class="neubrutalism  text-white px-8 py-3 contact-btn" style='background:green,color:white'>🤝 Join Our Newsletter</button>
+        <button class="neubrutalism  text-white px-8 py-3 contact-btn" style='background:green,color:white;margin-bottom: 20px' >🤝 Join Our Newsletter</button>
       </div>
     `;
 
@@ -1239,7 +1307,8 @@ window.addEventListener("load", () => {
   renderBlog();
   renderAbout();
   renderCTA();
-
+  // Call the function to update the visitor count
+  updateVisitorCount();
   attachEventListeners();
 });
 
@@ -1394,8 +1463,6 @@ function attachEventListeners() {
 
   // Contact modal
   const contactButtons = document.querySelectorAll(".contact-btn");
-  const contactModal = document.getElementById("contact-modal");
-  const closeContactModal = document.querySelector(".close-contact-modal");
 
   contactButtons.forEach((btn) => {
     btn.addEventListener("click", () => {

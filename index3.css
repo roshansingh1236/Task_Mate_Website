@@ -9,11 +9,12 @@
     --black: #000000;
     --text-color: #000000;
     --glossy-shadow: 0 4px 15px rgba(255, 79, 79, 0.2);
-    --pattern-opacity: 0.1;
+    --pattern-opacity: 0.3;
     --action-color: #FF4F4F;
     --info-color: #4ECDC4;
     --demo-color: #7B61FF;
     --contact-color: #FFB347;
+    
 }
 
 [data-theme="dark"] {
@@ -44,11 +45,13 @@ body {
     background: var(--white);
     color: var(--text-color);
     transition: all 0.3s ease;
+ 
     margin: 0; /* Remove default body margin */
 }
 
 body::-webkit-scrollbar {
     display: none; /* Chrome, Safari, and Opera */
+    
 }
 
 .untitled-2-1-icon {
@@ -244,6 +247,7 @@ button.neubrutalism.contact-btn {
     transition: all 0.2s ease;
     height: 100%;
     color: var(--text-color);
+    
 }
 
 .feature-card:hover {
@@ -495,6 +499,52 @@ button.neubrutalism.contact-btn {
     background-size: 25px 25px;
     animation: fadeInOut 6s linear infinite alternate;
 }
+.visitor-counter {
+    background-color: var(--accent); /* Use the accent color for the background */
+    border: 3px solid var(--black); /* Add a bold border */
+    border-radius: 0px;
+    padding: 20px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 300px;
+    box-shadow: var(--glossy-shadow), 5px 5px 0px var(--black);
+    transition: all 0.2s ease;
+    color: var(--text-color); /* Ensure text color is consistent */
+    animation: bounceIn 1s ease; /* Add animation */
+}
+
+.visitor-counter h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    color: var(--text-color);
+}
+
+.visitor-counter span {
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.visitor-counter:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--glossy-shadow), 7px 7px 0px var(--black);
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+
 
 .partner-carousel {
     display: flex;

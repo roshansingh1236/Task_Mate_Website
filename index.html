@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
 
 </head>
-<body >
+<body>
     <!-- Background pattern layer, Custom cursor, Theme toggle, Scroll buttons, Loader, Decorative shapes remain unchanged -->
     <div class="bg-pattern"></div>
     <div class="custom-cursor"></div>
@@ -20,7 +21,7 @@
     <!-- <div class="theme-toggle" id="theme-toggle">
         <i class="bi bi-sun-fill theme-icon" id="theme-icon"></i>
     </div> -->
-    <div class="scroll-buttons"> 
+    <div class="scroll-buttons">
         <div class="scroll-button scroll-to-top" id="scroll-to-top">
             <i class="bi bi-arrow-up text-2xl text-white"></i>
         </div>
@@ -30,7 +31,15 @@
     </div>
     <div id="loader" class="loader-container">
         <div class="loader">
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     </div>
     <div class="shape shape-square" style="bottom: 15%; left: 5%;"></div>
@@ -41,7 +50,8 @@
     <!-- Navbar (unchanged) -->
     <nav class="bg-white p-4 border-b-4 border-black sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold cursor-pointer" id="navbar-logo" style="display: flex; text-align: center; align-items: end;">
+            <h1 class="text-2xl font-bold cursor-pointer" id="navbar-logo"
+                style="display: flex; text-align: center; align-items: end;">
                 <img class="untitled-2-1-icon" alt="" src="./public/untitled2-1@2x.png" />TasksMate
             </h1>
             <div class="hidden md:flex space-x-6 items-center">
@@ -52,14 +62,14 @@
                 <a href="#pricing" class="hover:text-[#FF4F4F] font-medium">Pricing</a>
                 <a href="#blog" class="hover:text-[#FF4F4F] font-medium">Blog</a>
                 <a href="#about" class="hover:text-[#FF4F4F] font-medium">About</a>
-                <button class="neubrutalism action-btn text-white px-6 py-2 font-medium contact-btn">Get Started</button>
+                <button class="neubrutalism action-btn text-white px-6 py-2 font-medium contact-btn">Get
+                    Started</button>
             </div>
             <button id="mobile-menu-button" class="md:hidden"><i class="bi bi-list text-3xl"></i></button>
         </div>
     </nav>
-  
-      
-    
+
+
 
     <!-- Mobile Menu (unchanged) -->
     <div id="mobile-menu" class="mobile-menu">
@@ -74,15 +84,16 @@
         <a href="#pricing" class="my-4 text-xl hover:text-[#FF4F4F]">Pricing</a>
         <a href="#blog" class="my-4 text-xl hover:text-[#FF4F4F]">Blog</a>
         <a href="#about" class="my-4 text-xl hover:text-[#FF4F4F]">About</a>
-        <button class="neubrutalism action-btn text-white px-8 py-3 mt-6 w-full max-w-xs contact-btn">Get Started</button>
+        <button class="neubrutalism action-btn text-white px-8 py-3 mt-6 w-full max-w-xs contact-btn">Get
+            Started</button>
     </div>
 
-   <!-- Hero Section (Add Buttons) -->
-   <section class="hero-section container mx-auto py-16 px-4 relative overflow-hidden">
-    <div id="hero-content" class="max-w-4xl mx-auto text-center fade-in">
-     
-    </div>
-    <div class="shape shape-circle" style="
+    <!-- Hero Section (Add Buttons) -->
+    <section class="hero-section container mx-auto py-16 px-4 relative overflow-hidden">
+        <div id="hero-content" class="max-w-4xl mx-auto text-center fade-in">
+    
+        </div>
+        <div class="shape shape-circle" style="
         bottom: 1%;
         right: 1%;
         width: 80px;
@@ -90,8 +101,9 @@
         background-color: rgb(123, 97, 255);
         opacity: 0.4;
         animation-delay: 1.19648s;"></div>
-    <div class="shape shape-square" style="top: 100px; right: 0%; width: 60px; height: 60px; background-color: #4ECDC4;"></div>
-</section>
+        <div class="shape shape-square" style="top: 100px; right: 0%; width: 60px; height: 60px; background-color: #4ECDC4;">
+        </div>
+        </section>
 
 
 
@@ -103,150 +115,163 @@
         <div class="shape shape-dots" style="bottom: 50px; right: 10%;"></div>
     </section>
     <!-- Add this new section after the Stats Section and before the Partners Section -->
-<section class="py-16 relative overflow-hidden">
-    <div id="replaces-software-content"></div>
-    <div class="text-center mt-12">
-        <button class="neubrutalism contact-btn text-white px-8 py-3">🚀 Switch to TasksMate</button>
-    </div>
-</section>
+    <section class="py-16 relative overflow-hidden">
+        <div id="replaces-software-content"></div>
+        <div class="text-center mt-12">
+            <button class="neubrutalism contact-btn text-white px-8 py-3">🚀 Switch to TasksMate</button>
+        </div>
+    </section>
 
-<!-- Pricing Comparison Section -->
-<section class="py-16 px-4 relative overflow-hidden">
-    <div class="container mx-auto">
-        <div class="feature-card p-8">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-4">TasksMate vs. The Competition</h2>
-                <p class="text-xl text-gray-600">Compare pricing for your team size</p>
-            </div>
-
-            <!-- Team Size Toggle -->
-            <div class="flex justify-center mb-8 gap-4 flex-wrap">
-                <button class="neubrutalism action-btn px-4 py-2 subscription-toggle active" data-users="10">10 Users</button>
-                <button class="neubrutalism info-btn px-4 py-2 subscription-toggle" data-users="25">25 Users</button>
-                <button class="neubrutalism demo-btn px-4 py-2 subscription-toggle" data-users="50">50 Users</button>
-                <button class="neubrutalism contact-btn px-4 py-2 subscription-toggle" data-users="100">100 Users</button>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start relative">
-                <!-- Left Side: Competitors Grid -->
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <!-- Jira -->
-                    <div class="integration-card p-4 text-center">
-                        <div class="w-12 h-12 bg-[#0052CC] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
-                            <i class="bi bi-bug text-xl text-blue-900"></i>
-                        </div>
-                        <h3 class="text-lg font-bold">Jira</h3>
-                        <p class="text-sm user-price" data-10-users="$81.50" data-25-users="$203.75" data-50-users="$407.50" data-100-users="$815">10 Users: $81.50/month</p>
-                    </div>
-
-                    <!-- ClickUp -->
-                    <div class="integration-card p-4 text-center">
-                        <div class="w-12 h-12 bg-[#7B61FF] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
-                            <i class="bi bi-kanban text-xl text-blue-900"></i>
-                        </div>
-                        <h3 class="text-lg font-bold">ClickUp</h3>
-                        <p class="text-sm user-price" data-10-users="$70" data-25-users="$175" data-50-users="$350" data-100-users="$700">10 Users: $70/month</p>
-                    </div>
-
-                    <!-- Monday.com -->
-                    <div class="integration-card p-4 text-center">
-                        <div class="w-12 h-12 bg-[#4262FF] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
-                            <i class="bi bi-grid-3x3-gap text-xl text-blue-900"></i>
-                        </div>
-                        <h3 class="text-lg font-bold">Monday.com</h3>
-                        <p class="text-sm user-price" data-10-users="$120" data-25-users="$300" data-50-users="$600" data-100-users="$1200">10 Users: $120/month</p>
-                    </div>
-
-                    <!-- Wrike -->
-                    <div class="integration-card p-4 text-center">
-                        <div class="w-12 h-12 bg-[#00C7B7] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
-                            <i class="bi bi-kanban text-xl text-blue-900"></i>
-                        </div>
-                        <h3 class="text-lg font-bold">Wrike</h3>
-                        <p class="text-sm user-price" data-10-users="$98" data-25-users="$245" data-50-users="$490" data-100-users="$980">10 Users: $98/month</p>
-                    </div>
-
-                    <!-- Trello -->
-                    <div class="integration-card p-4 text-center">
-                        <div class="w-12 h-12 bg-[#0079BF] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
-                            <i class="bi bi-columns-gap text-xl text-blue-900"></i>
-                        </div>
-                        <h3 class="text-lg font-bold">Trello</h3>
-                        <p class="text-sm user-price" data-10-users="$50" data-25-users="$125" data-50-users="$250" data-100-users="$500">10 Users: $50/month</p>
-                    </div>
-
-                    <!-- Asana -->
-                    <div class="integration-card p-4 text-center">
-                        <div class="w-12 h-12 bg-[#F44336] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
-                            <i class="bi bi-list-task text-xl text-blue-900"></i>
-                        </div>
-                        <h3 class="text-lg font-bold">Asana</h3>
-                        <p class="text-sm user-price" data-10-users="$110" data-25-users="$275" data-50-users="$550" data-100-users="$1100">10 Users: $110/month</p>
-                    </div>
+    <!-- Pricing Comparison Section -->
+    <section class="py-16 px-4 relative overflow-hidden">
+        <div class="container mx-auto">
+            <div class="feature-card p-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">TasksMate vs. The Competition</h2>
+                    <p class="text-xl text-gray-600">Compare pricing for your team size</p>
                 </div>
 
-                <!-- Zigzag Divider -->
-              <!--   <div class="hidden md:block absolute left-1/2 top-0 h-full w-10 transform -translate-x-1/2 z-10">
+                <!-- Team Size Toggle -->
+                <div class="flex justify-center mb-8 gap-4 flex-wrap">
+                    <button class="neubrutalism action-btn px-4 py-2 subscription-toggle active" data-users="10">10
+                        Users</button>
+                    <button class="neubrutalism info-btn px-4 py-2 subscription-toggle" data-users="25">25
+                        Users</button>
+                    <button class="neubrutalism demo-btn px-4 py-2 subscription-toggle" data-users="50">50
+                        Users</button>
+                    <button class="neubrutalism contact-btn px-4 py-2 subscription-toggle" data-users="100">100
+                        Users</button>
+                    </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start relative">
+                    <!-- Left Side: Competitors Grid -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <!-- Jira -->
+                        <div class="integration-card p-4 text-center">
+                            <div class="w-12 h-12 bg-[#0052CC] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
+                                <i class="bi bi-bug text-xl text-blue-900"></i>
+                            </div>
+                            <h3 class="text-lg font-bold">Jira</h3>
+                            <p class="text-sm user-price" data-10-users="$81.50" data-25-users="$203.75" data-50-users="$407.50"
+                                data-100-users="$815">10 Users: $81.50/month</p>
+                            </div>
+
+                        <!-- ClickUp -->
+                        <div class="integration-card p-4 text-center">
+                            <div class="w-12 h-12 bg-[#7B61FF] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
+                                <i class="bi bi-kanban text-xl text-blue-900"></i>
+                            </div>
+                            <h3 class="text-lg font-bold">ClickUp</h3>
+                            <p class="text-sm user-price" data-10-users="$70" data-25-users="$175" data-50-users="$350" data-100-users="$700">10
+                                Users: $70/month</p>
+                            </div>
+
+                        <!-- Monday.com -->
+                        <div class="integration-card p-4 text-center">
+                            <div class="w-12 h-12 bg-[#4262FF] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
+                                <i class="bi bi-grid-3x3-gap text-xl text-blue-900"></i>
+                            </div>
+                            <h3 class="text-lg font-bold">Monday.com</h3>
+                            <p class="text-sm user-price" data-10-users="$120" data-25-users="$300" data-50-users="$600" data-100-users="$1200">10
+                                Users: $120/month</p>
+                            </div>
+
+                        <!-- Wrike -->
+                        <div class="integration-card p-4 text-center">
+                            <div class="w-12 h-12 bg-[#00C7B7] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
+                                <i class="bi bi-kanban text-xl text-blue-900"></i>
+                            </div>
+                            <h3 class="text-lg font-bold">Wrike</h3>
+                            <p class="text-sm user-price" data-10-users="$98" data-25-users="$245" data-50-users="$490" data-100-users="$980">10
+                                Users: $98/month</p>
+                            </div>
+
+                        <!-- Trello -->
+                        <div class="integration-card p-4 text-center">
+                            <div class="w-12 h-12 bg-[#0079BF] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
+                                <i class="bi bi-columns-gap text-xl text-blue-900"></i>
+                            </div>
+                            <h3 class="text-lg font-bold">Trello</h3>
+                            <p class="text-sm user-price" data-10-users="$50" data-25-users="$125" data-50-users="$250" data-100-users="$500">10
+                                Users: $50/month</p>
+                            </div>
+
+                        <!-- Asana -->
+                        <div class="integration-card p-4 text-center">
+                            <div class="w-12 h-12 bg-[#F44336] border-3 border-black flex items-center justify-center rounded-full mx-auto mb-2">
+                                <i class="bi bi-list-task text-xl text-blue-900"></i>
+                            </div>
+                            <h3 class="text-lg font-bold">Asana</h3>
+                            <p class="text-sm user-price" data-10-users="$110" data-25-users="$275" data-50-users="$550" data-100-users="$1100">10
+                                Users: $110/month</p>
+                            </div>
+                            </div>
+
+                    <!-- Zigzag Divider -->
+                    <!--   <div class="hidden md:block absolute left-1/2 top-0 h-full w-10 transform -translate-x-1/2 z-10">
                     <div class="shape-zigzag w-full h-full" style="opacity: 0.8;"></div>
                 </div> -->
 
-                <!-- Right Side: TasksMate -->
-                <div class="pricing-card featured p-8 flex flex-col items-center">
-                    <!-- Title, Description, and Price in Row with Space-Between -->
-                    <div class="flex flex-col md:flex-row justify-between items-center w-full mb-6 text-center md:text-left space-y-2 md:space-y-0">
-                        <div>
-                            <h3 class="text-3xl font-bold text-[#FF4F4F]">TasksMate</h3>
-                        <p class="text-sm text-[#FF4F4F]">Your all-in-one productivity solution</p>
-                        </div>
-                        <div class="price-display flex items-center">
-                            <span class="text-3xl font-bold text-[#FF4F4F] user-price" data-10-users="$60" data-25-users="$150" data-50-users="$300" data-100-users="$600">$60</span>
-                            <span class="text-base ml-2 text-[#FF4F4F]">/month</span>
-                        </div>
-                    </div>
+                    <!-- Right Side: TasksMate -->
+                    <div class="pricing-card featured p-8 flex flex-col items-center">
+                        <!-- Title, Description, and Price in Row with Space-Between -->
+                        <div
+                            class="flex flex-col md:flex-row justify-between items-center w-full mb-6 text-center md:text-left space-y-2 md:space-y-0">
+                            <div>
+                                <h3 class="text-3xl font-bold text-[#FF4F4F]">TasksMate</h3>
+                                <p class="text-sm text-[#FF4F4F]">Your all-in-one productivity solution</p>
+                            </div>
+                            <div class="price-display flex items-center">
+                                <span class="text-3xl font-bold text-[#FF4F4F] user-price" data-10-users="$60" data-25-users="$150" data-50-users="$300"
+                                    data-100-users="$600">$60</span>
+                                <span class="text-base ml-2 text-[#FF4F4F]">/month</span>
+                                </div>
+                                </div>
 
-                    <!-- Features -->
-                    <ul class="space-y-4 mb-6 w-full">
-                        <li class="flex items-center">
-                            <i class="bi bi-check-circle text-[#7B61FF] text-2xl mr-3"></i>
-                            <span>All premium features included</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="bi bi-check-circle text-[#7B61FF] text-2xl mr-3"></i>
-                            <span>Unlimited integrations</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="bi bi-check-circle text-[#7B61FF] text-2xl mr-3"></i>
-                            <span>24/7 priority support</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="bi bi-check-circle text-[#7B61FF] text-2xl mr-3"></i>
-                            <span>Scalable for any team size</span>
-                        </li>
-                    </ul>
+                        <!-- Features -->
+                        <ul class="space-y-4 mb-6 w-full">
+                            <li class="flex items-center">
+                                <i class="bi bi-check-circle text-[#7B61FF] text-2xl mr-3"></i>
+                                <span>All premium features included</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="bi bi-check-circle text-[#7B61FF] text-2xl mr-3"></i>
+                                <span>Unlimited integrations</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="bi bi-check-circle text-[#7B61FF] text-2xl mr-3"></i>
+                                <span>24/7 priority support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="bi bi-check-circle text-[#7B61FF] text-2xl mr-3"></i>
+                                <span>Scalable for any team size</span>
+                            </li>
+                        </ul>
 
-                    <!-- Button -->
-                    <button class="neubrutalism contact-btn text-white px-8 py-3">🚀 Switch to TasksMate</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="shape shape-circle" style="top: 15%; left: 5%; width: 80px; height: 80px; background-color: #FFE974;"></div>
-    <div class="shape shape-dots" style="bottom: 20%; right: 5%;"></div>
-</section>
+                        <!-- Button -->
+                        <button class="neubrutalism contact-btn text-white px-8 py-3">🚀 Switch to TasksMate</button>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+        <div class="shape shape-circle" style="top: 15%; left: 5%; width: 80px; height: 80px; background-color: #FFE974;"></div>
+        <div class="shape shape-dots" style="bottom: 20%; right: 5%;"></div>
+        </section>
     <!-- Video Section -->
     <section class="py-16 px-4 relative">
         <div class="container mx-auto text-center">
             <div id="video-content"></div>
         </div>
         <div class="shape shape-circle" style="top: 30%; left: 8%; width: 70px; height: 70px; background-color: #FFE974;"></div>
-        <div class="shape shape-square" style="bottom: 15%; right: 8%; width: 50px; height: 50px; background-color: #FF4F4F;"></div>
+        <div class="shape shape-square" style="bottom: 15%; right: 8%; width: 50px; height: 50px; background-color: #FF4F4F;">
+        </div>
     </section>
 
     <!-- Integrations Section -->
     <section id="integrations" class="py-16 px-4 relative">
         <div class="container mx-auto">
             <div id="integrations-content"></div>
-            
+
         </div>
         <div class="shape shape-square" style="top: 30%; left: 5%; width: 40px; height: 40px; background-color: #FFE974;"></div>
     </section>
@@ -256,7 +281,8 @@
         <div class="container mx-auto">
             <div id="services-content"></div>
         </div>
-        <div class="shape shape-circle" style="bottom: 10%; right: 10%; width: 100px; height: 100px; background-color: #FF4F4F;"></div>
+        <div class="shape shape-circle"
+            style="bottom: 10%; right: 10%; width: 100px; height: 100px; background-color: #FF4F4F;"></div>
         <div class="shape shape-dots" style="top: 0%; left: 5%; width: 150px;"></div>
     </section>
 
@@ -286,7 +312,8 @@
                 <button class="neubrutalism contact-btn text-white px-8 py-3">Contact Us for Custom Pricing</button>
             </div>
         </div>
-        <div class="shape shape-square" style="bottom: 15%; right: 5%; width: 70px; height: 70px; background-color: #FFE974;"></div>
+        <div class="shape shape-square" style="bottom: 15%; right: 5%; width: 70px; height: 70px; background-color: #FFE974;">
+        </div>
         <div class="shape shape-circle" style="top: 10%; left: 5%; width: 60px; height: 60px; background-color: #4ECDC4;"></div>
     </section>
 
@@ -295,7 +322,8 @@
         <div class="container mx-auto">
             <div id="benefits-content"></div>
         </div>
-        <div class="shape shape-circle" style="top: 10%; left: 15%; width: 80px; height: 80px; background-color: #FFE974;"></div>
+        <div class="shape shape-circle" style="top: 10%; left: 15%; width: 80px; height: 80px; background-color: #FFE974;">
+        </div>
         <div class="shape shape-dots" style="bottom: 20%; right: 5%;"></div>
     </section>
 
@@ -304,41 +332,46 @@
         <div class="container mx-auto">
             <div id="stats-content"></div>
         </div>
-        <div class="shape shape-square" style="top: 15%; left: 5%; width: 50px; height: 50px; background-color: white;"></div>
-        <div class="shape shape-square" style="bottom: 15%; right: 5%; width: 50px; height: 50px; background-color: #FF4F4F;"></div>
+        <div class="shape shape-square" style="top: 15%; left: 5%; width: 50px; height: 50px; background-color: white;">
+        </div>
+        <div class="shape shape-square" style="bottom: 15%; right: 5%; width: 50px; height: 50px; background-color: #FF4F4F;">
+        </div>
     </section>
 
-      
+
     <!-- Partners Section -->
-    
+
     <section id="partners-content" style="padding: 4%;">
-     
+
     </section>
     <section id="visitor-counter" style="padding: 4%;">
-        <div   class="visitor-counter">
+        <div class="visitor-counter">
             <h2>Visitor Count: <span id="visitor-count">0</span></h2>
         </div>
     </section>
-   
-    
-    
+
+
     <!-- Blog Section -->
     <section id="blog" style="padding: 4%;">
         <div id="blog-content"></div>
-      </section>
-     <!-- CTA Section (Add Buttons) -->
-     <section class="py-16 px-4 bg-[#F5F5F5] relative">
+    </section>
+    <!-- CTA Section (Add Buttons) -->
+    <section class="py-16 px-4 bg-[#F5F5F5] relative">
         <div class="container mx-auto text-center max-w-3xl">
             <div id="cta-content">
                 <!-- Existing content assumed here -->
                 <div class="mt-8 flex justify-center gap-4 flex-wrap">
-                    <button class="neubrutalism playstore-btn text-white px-6 py-2 font-medium"><i class="bi bi-google-play mr-2"></i>Play Store</button>
-                    <button class="neubrutalism appstore-btn text-white px-6 py-2 font-medium"><i class="bi bi-apple mr-2"></i>App Store</button>
+                    <button class="neubrutalism playstore-btn text-white px-6 py-2 font-medium"><i class="bi bi-google-play mr-2"></i>Play
+                        Store</button>
+                    <button class="neubrutalism appstore-btn text-white px-6 py-2 font-medium"><i class="bi bi-apple mr-2"></i>App
+                        Store</button>
                 </div>
             </div>
         </div>
-        <div class="shape shape-circle" style="bottom: 20%; left: 10%; width: 60px; height: 60px; background-color: #FFE974"></div>
-        <div class="shape shape-square" style="top: 30%; right: 10%; width: 40px; height: 40px; background-color: #FF4F4F;"></div>
+        <div class="shape shape-circle" style="bottom: 20%; left: 10%; width: 60px; height: 60px; background-color: #FFE974">
+        </div>
+        <div class="shape shape-square" style="top: 30%; right: 10%; width: 40px; height: 40px; background-color: #FF4F4F;">
+        </div>
     </section>
 
     <!-- About Section -->
@@ -346,12 +379,13 @@
         <div class="container mx-auto">
             <div id="about-content"></div>
         </div>
-        <div class="shape shape-circle" style="top: 20%; right: 8%; width: 80px; height: 80px; background-color: #FFE974;"></div>
+        <div class="shape shape-circle" style="top: 20%; right: 8%; width: 80px; height: 80px; background-color: #FFE974;">
+        </div>
         <div class="shape shape-dots" style="bottom: 10%; left: 5%;"></div>
     </section>
 
     <!-- CTA Section -->
-  <!--   <section class="py-16 px-4 bg-[#F5F5F5] relative">
+    <!--   <section class="py-16 px-4 bg-[#F5F5F5] relative">
         <div class="container mx-auto text-center max-w-3xl">
             <div id="cta-content"></div>
         </div>
@@ -360,120 +394,136 @@
     </section> -->
 
     <!-- Footer -->
-<footer class="bg-[#2E2E2E] text-white py-12 px-4 relative">
-    <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div class="shape shape-circle" style="bottom: 20%; left: 10%; width: 60px; height: 60px; background-color: #FFE974"></div>
-        <div class="shape shape-square" style="top: 30%; right: 10%; width: 40px; height: 40px; background-color: #FF4F4F;"></div>
-        <div>
-            <h3 class="text-xl font-bold mb-4" style="display: flex; text-align: center; align-items: end;">
-                <img class="untitled-2-1-icon" alt="" src="./public/untitled2-1@2x.png" />TasksMate
-            </h3>
-            <p class="mb-4">Simplify work, boost productivity</p>
-            <div class="flex space-x-4">
-                <a href="#" class="hover:text-[#FF4F4F]"><i class="bi bi-twitter text-xl" style="color: #1DA1F2;"></i></a>
-                <a href="https://www.facebook.com/roshansingh1235" class="hover:text-[#FF4F4F]"><i class="bi bi-facebook text-xl" style="color: #1877F2;"></i></a>
-                <a href="#" class="hover:text-[#FF4F4F]"><i class="bi bi-linkedin text-xl" style="color: #0077B5;"></i></a>
-                <a href="https://www.instagram.com/taskmate432/" class="hover:text-[#FF4F4F]"><i class="bi bi-instagram text-xl" style="color: #C13584;"></i></a>
+    <footer class="bg-[#2E2E2E] text-white py-12 px-4 relative">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="shape shape-circle" style="bottom: 20%; left: 10%; width: 60px; height: 60px; background-color: #FFE974">
             </div>
+            <div class="shape shape-square" style="top: 30%; right: 10%; width: 40px; height: 40px; background-color: #FF4F4F;">
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4" style="display: flex; text-align: center; align-items: end;">
+                    <img class="untitled-2-1-icon" alt="" src="./public/untitled2-1@2x.png" />TasksMate
+                </h3>
+                <p class="mb-4">Simplify work, boost productivity</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-[#FF4F4F]"><i class="bi bi-twitter text-xl" style="color: #1DA1F2;"></i></a>
+                    <a href="https://www.facebook.com/roshansingh1235" class="hover:text-[#FF4F4F]"><i class="bi bi-facebook text-xl"
+                            style="color: #1877F2;"></i></a>
+                    <a href="#" class="hover:text-[#FF4F4F]"><i class="bi bi-linkedin text-xl" style="color: #0077B5;"></i></a>
+                    <a href="https://www.instagram.com/taskmate432/" class="hover:text-[#FF4F4F]"><i class="bi bi-instagram text-xl"
+                            style="color: #C13584;"></i></a>
+                    </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Product</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#features" class="hover:text-[#FF4F4F]">Features</a></li>
+                            <li><a href="#integrations" class="hover:text-[#FF4F4F]">Integrations</a></li>
+                            <li><a href="#pricing" class="hover:text-[#FF4F4F]">Pricing</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Company</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#about" class="hover:text-[#FF4F4F]">About Us</a></li>
+                            <li><a href="#blog" class="hover:text-[#FF4F4F]">Blog</a></li>
+                            <li class="label12"><a href="privacy-policy.html" style="color: green;">Privacy Policy</a></li>
+                            <li class="label12"><a href="terms.html" style="color: green;">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Support</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="contact-btn hover:text-[#FF4F4F]">Help Center</a></li>
+                            <li><a href="#" class="contact-btn hover:text-[#FF4F4F]">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    </div>
+                    <div class="container mx-auto mt-8 pt-8 border-t border-gray-700">
+                        <p class="text-center">© 2023 TasksMate. All rights reserved.</p>
+                    </div>
+                    </footer>
+                    <!-- Cookie Banner -->
+    <div id="cookie-banner"
+        style="display: none; position: fixed; bottom: 10px; left: 20px; right: 20px; background-color: #fff000; color: #000; padding: 10px; border: 4px solid #000; font-family: 'Arial', sans-serif; font-size: 16px; z-index: 9999; box-shadow: 4px 4px 0 #000;">
+        <p style="margin: 0;">
+            <strong>Your privacy matters!</strong> TasksMate uses cookies to improve your experience.
+            By continuing, you agree to our
+            <a href="/cookie-policy" style="color: #000; text-decoration: underline; font-weight: bold;">Cookie
+                Policy</a>.
+            </p>
+        <button id="accept-cookies"
+            style="margin-top: 10px; padding: 10px 20px; background: #000; color: #fff000; border: 3px solid #000; font-weight: bold; cursor: pointer;">
+            Got it!
+        </button>
         </div>
-        <div>
-            <h3 class="text-xl font-bold mb-4">Product</h3>
-            <ul class="space-y-2">
-                <li><a href="#features" class="hover:text-[#FF4F4F]">Features</a></li>
-                <li><a href="#integrations" class="hover:text-[#FF4F4F]">Integrations</a></li>
-                <li><a href="#pricing" class="hover:text-[#FF4F4F]">Pricing</a></li>
-            </ul>
-        </div>
-        <div>
-            <h3 class="text-xl font-bold mb-4">Company</h3>
-            <ul class="space-y-2">
-                <li><a href="#about" class="hover:text-[#FF4F4F]">About Us</a></li>
-                <li><a href="#blog" class="hover:text-[#FF4F4F]">Blog</a></li>
-                <li class="label12"><a href="privacy-policy.html" style="color: green;">Privacy Policy</a></li>
-                <li class="label12"><a href="terms.html" style="color: green;">Terms of Service</a></li>
-            </ul>
-        </div>
-        <div>
-            <h3 class="text-xl font-bold mb-4">Support</h3>
-            <ul class="space-y-2">
-                <li><a href="#" class="contact-btn hover:text-[#FF4F4F]">Help Center</a></li> 
-                <li><a href="#" class="contact-btn hover:text-[#FF4F4F]">Contact Us</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="container mx-auto mt-8 pt-8 border-t border-gray-700">
-        <p class="text-center">© 2023 TasksMate. All rights reserved.</p>
-    </div>
-</footer>
-  <!-- Cookie Banner -->
-  <div id="cookie-banner" style="display: none; position: fixed; bottom: 10px; left: 20px; right: 20px; background-color: #fff000; color: #000; padding: 10px; border: 4px solid #000; font-family: 'Arial', sans-serif; font-size: 16px; z-index: 9999; box-shadow: 4px 4px 0 #000;">
-    <p style="margin: 0;">
-      <strong>Your privacy matters!</strong> TasksMate uses cookies to improve your experience.
-      By continuing, you agree to our 
-      <a href="/cookie-policy" style="color: #000; text-decoration: underline; font-weight: bold;">Cookie Policy</a>.
-    </p>
-    <button id="accept-cookies" style="margin-top: 10px; padding: 10px 20px; background: #000; color: #fff000; border: 3px solid #000; font-weight: bold; cursor: pointer;">
-      Got it!
-    </button>
-  </div>
         <!-- Contact Form Modal -->
-<div class="contact-modal" id="contact-modal">
-    <div class="contact-modal-content p-6" style="margin-top: 10%;">
-        <div class="flex justify-between items-center mb-6">
-            <h3 class="text-2xl font-bold">Get Started with TasksMate</h3>
-            <button class="close-contact-modal text-2xl">&times;</button>
-        </div>
-        <form class="space-y-4">
-            <div>
-                <label class="block mb-2 font-medium">Your Name</label>
-                <input type="text" placeholder="Enter your full name" class="w-full p-3 border-2 border-black focus:outline-none focus:border-[#FF4F4F]">
-            </div>
-            <div>
-                <label class="block mb-2 font-medium">Email Address</label>
-                <input type="email" placeholder="Enter your email address" class="w-full p-3 border-2 border-black focus:outline-none focus:border-[#FF4F4F]">
-            </div>
-            <div>
-                <label class="block mb-2 font-medium">Company Name</label>
-                <input type="text" placeholder="Enter your company name" class="w-full p-3 border-2 border-black focus:outline-none focus:border-[#FF4F4F]">
-            </div>
-            <div>
-                <label class="block mb-2 font-medium">Team Size</label>
-                <select class="w-full p-3 border-2 border-black focus:outline-none focus:border-[#FF4F4F]">
-                    <option>1-5 employees</option>
-                    <option>6-20 employees</option>
-                    <option>21-100 employees</option>
-                    <option>101+ employees</option>
-                </select>
-            </div>
-            <div>
-                <label class="block mb-2 font-medium">Message (Optional)</label>
-                <textarea rows="3" placeholder="Tell us about your needs" class="w-full p-3 border-2 border-black focus:outline-none focus:border-[#FF4F4F]"></textarea>
-            </div>
-            <button type="submit" class="neubrutalism bg-[#FF4F4F] text-white w-full py-3 font-medium">Submit Request</button>
-            <p class="text-sm text-center mt-4">By submitting this form, you agree to our Terms of Service and Privacy Policy.</p>
-        </form>
-    </div>
-    <!-- Video Modal -->
-<div class="video-modal" id="video-modal">
-    <div class="video-modal-content">
-        <div class="flex justify-between items-center bg-white p-4">
-            <h3 class="text-xl font-bold">TasksMate Demo</h3>
-            <button class="close-video-modal text-2xl">&times;</button>
-        </div>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-    </div>
-</div>
+        <div class="contact-modal" id="contact-modal">
+            <div class="contact-modal-content p-6" style="margin-top: 10%;">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold">Get Started with TasksMate</h3>
+                    <button class="close-contact-modal text-2xl">&times;</button>
+                </div>
+            <form id="contactForm" class="space-y-4">
+                <div>
+                    <label class="block mb-2 font-medium">Your Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name"
+                        class="w-full p-3 border-2 border-black focus:outline-none focus:border-[#FF4F4F]">
+                    </div>
+                    <div>
+                        <label class="block mb-2 font-medium">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email address"
+                        class="w-full p-3 border-2 border-black focus:outline-none focus:border-[#FF4F4F]">
+                    </div>
+                    <div>
+                        <label class="block mb-2 font-medium">Company Name</label>
+                    <input type="text" id="companyName" placeholder="Enter your company name"
+                        class="w-full p-3 border-2 border-black focus:outline-none focus:border-[#FF4F4F]">
+                    </div>
+                    <div>
+                        <label class="block mb-2 font-medium">Team Size</label>
+                    <select id="teamSize" class="w-full p-3 border-2 border-black focus:outline-none focus:border-[#FF4F4F]">
+                        <option>1-5 employees</option>
+                        <option>6-20 employees</option>
+                        <option>21-100 employees</option>
+                        <option>101+ employees</option>
+                    </select>
+                    </div>
+                    <div>
+                        <label class="block mb-2 font-medium">Message (Optional)</label>
+                    <textarea id="message" rows="3" placeholder="Tell us about your needs"
+                        class="w-full p-3 border-2 border-black focus:outline-none focus:border-[#FF4F4F]"></textarea>
+                    </div>
+                <button type="submit" class="neubrutalism bg-[#FF4F4F] text-white w-full py-3 font-medium">Submit
+                    Request</button>
+                <p class="text-sm text-center mt-4">By submitting this form, you agree to our Terms of Service and
+                    Privacy Policy.</p>
+                </form>
+                </div>
+                <!-- Video Modal -->
+                <div class="video-modal" id="video-modal">
+                    <div class="video-modal-content">
+                        <div class="flex justify-between items-center bg-white p-4">
+                            <h3 class="text-xl font-bold">TasksMate Demo</h3>
+                            <button class="close-video-modal text-2xl">&times;</button>
+                        </div>
+                        <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                    </div>
+                    </div>
+                    </div>
 
-</div>
+    </div>
 
     </footer>
 
     <!-- Team Modals, Contact Modal, Video Modal remain unchanged -->
-    <script  src="script.js" type="module">
+    <script src="script.js" type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-      </script>
+</script>
 </body>
+
 </html>

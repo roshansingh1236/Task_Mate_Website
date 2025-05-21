@@ -1544,3 +1544,136 @@ function attachEventListeners() {
     .querySelectorAll(".shape")
     .forEach((shape) => shapeObserver.observe(shape));
 }
+
+// Contact Form Submission Handler
+document
+  .getElementById("contactForm")
+  .addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    // Get the submit button and show loading state
+    const submitButton = this.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.innerHTML;
+    submitButton.innerHTML = `
+        <div class="flex items-center justify-center">
+            <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+            Submitting...
+        </div>
+    `;
+    submitButton.disabled = true;
+
+    const formData = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      companyName: document.getElementById("companyName").value,
+      teamSize: document.getElementById("teamSize").value,
+      message: document.getElementById("message").value,
+    };
+
+    try {
+      const response = await fetch(
+        "https://us-central1-taskmate-48642.cloudfunctions.net/submitContactForm",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (response.ok) {
+        // Create success message container
+        const successDiv = document.createElement("div");
+        successDiv.id = "success-message";
+        successDiv.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: #FFE974;
+            padding: 2rem;
+            border: 4px solid #000;
+            box-shadow: 8px 8px 0 #000;
+            z-index: 9999;
+            min-width: 300px;
+            text-align: center;
+            opacity: 0;
+            animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        `;
+
+        // Add animation keyframes
+        const style = document.createElement("style");
+        style.textContent = `
+            @keyframes popIn {
+                0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+                100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            }
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+            .checkmark-icon {
+                animation: bounce 1s infinite;
+            }
+        `;
+        document.head.appendChild(style);
+
+        successDiv.innerHTML = `
+            <div class="checkmark-icon" style="width: 80px; height: 80px; background: #FF4F4F; border: 4px solid #000; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                <i class="bi bi-check-lg text-4xl text-white"></i>
+            </div>
+            <h3 style="font-family: 'Space Grotesk', sans-serif; font-weight: bold; font-size: 1.5rem; margin-bottom: 1rem;">Request Submitted! 🎉</h3>
+            <p style="font-family: 'Poppins', sans-serif; margin-bottom: 1.5rem;">We'll get back to you soon!</p>
+            <button onclick="document.getElementById('success-message').remove();" 
+                    style="background: #4ECDC4; border: 3px solid #000; padding: 0.75rem 2rem; font-weight: bold; cursor: pointer; width: 100%; transition: transform 0.2s, box-shadow 0.2s;"
+                    onmouseover="this.style.transform='translate(-4px, -4px)'; this.style.boxShadow='4px 4px 0 #000';"
+                    onmouseout="this.style.transform='translate(0, 0)'; this.style.boxShadow='none';">
+                Awesome!
+            </button>
+        `;
+
+        // Append the success dialog to the document body
+        document.body.appendChild(successDiv);
+
+        document.getElementById("contactForm").reset();
+        document.getElementById("contact-modal").style.display = "none";
+      } else {
+        throw new Error("Network response was not ok");
+      }
+    } catch (error) {
+      // Show error in a neubrutalism style
+      const errorDiv = document.createElement("div");
+      errorDiv.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #FF4F4F;
+            padding: 2rem;
+            border: 4px solid #000;
+            box-shadow: 8px 8px 0 #000;
+            z-index: 9999;
+            min-width: 300px;
+            text-align: center;
+            color: white;
+        `;
+      errorDiv.innerHTML = `
+            <h3 style="font-family: 'Space Grotesk', sans-serif; font-weight: bold; font-size: 1.5rem; margin-bottom: 1rem;">Oops! Something went wrong</h3>
+            <p style="font-family: 'Poppins', sans-serif; margin-bottom: 1.5rem;">Error: ${error.message}</p>
+            <button onclick="this.parentElement.remove();" 
+                    style="background: white; border: 3px solid #000; padding: 0.75rem 2rem; font-weight: bold; cursor: pointer; width: 100%; color: #FF4F4F;">
+                Try Again
+            </button>
+        `;
+      
+      // Append the error dialog to the document body
+      document.body.appendChild(errorDiv);
+      
+      console.error("Error:", error);
+    } finally {
+      // Reset the submit button state
+      submitButton.innerHTML = originalButtonText;
+      submitButton.disabled = false;
+    }
+  });

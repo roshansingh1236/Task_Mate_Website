@@ -1320,7 +1320,7 @@ function attachEventListeners() {
       () => (document.getElementById("loader").style.display = "none"),
       500
     );
-  }, 1500);
+  }, 4000);
 
   // Custom cursor (unchanged)
   const cursor = document.querySelector(".custom-cursor");

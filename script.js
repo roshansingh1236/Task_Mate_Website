@@ -327,54 +327,6 @@ const teamsData = {
   ],
 };
 
-const pricingData = {
-  title: "Pricing Plans",
-  description:
-    "Choose the perfect plan for your team's needs. All plans include core features with premium options for growing teams.",
-  items: [
-    {
-      title: "Starter",
-      description: "Perfect for individuals and small teams",
-      price: "$9/month",
-      features: [
-        { text: "Up to 5 team members", available: true },
-        { text: "5GB storage", available: true },
-        { text: "Basic task management", available: true },
-        { text: "Team messaging", available: true },
-        { text: "Time tracking", available: false },
-        { text: "Client portal", available: false },
-      ],
-    },
-    {
-      title: "Professional",
-      description: "Ideal for growing teams and businesses",
-      price: "$29/month",
-      popular: true,
-      features: [
-        { text: "Up to 20 team members", available: true },
-        { text: "25GB storage", available: true },
-        { text: "Advanced task management", available: true },
-        { text: "Team messaging", available: true },
-        { text: "Time tracking", available: true },
-        { text: "Basic client portal", available: true },
-      ],
-    },
-    {
-      title: "Enterprise",
-      description: "Advanced features for large organizations",
-      price: "$79/month",
-      features: [
-        { text: "Unlimited team members", available: true },
-        { text: "100GB storage", available: true },
-        { text: "Premium task management", available: true },
-        { text: "Advanced team collaboration", available: true },
-        { text: "Advanced time tracking", available: true },
-        { text: "Custom client portal", available: true },
-      ],
-    },
-  ],
-};
-
 const benefitsData = {
   title: "Trusted by Teams You Get:",
   description:
@@ -490,9 +442,9 @@ function renderHero() {
         </h1>  
         <p class="text-xl mb-8">${heroData.subtitle}</p>
         <div class="flex flex-wrap justify-center gap-4">
-         
             <button class="neubrutalism action-btn text-white px-8 py-3 slide-in-left playstore-btn"><i class="bi bi-google-play mr-2"></i>Playstore</button>
             <button class="neubrutalism demo-btn text-white px-8 py-3 slide-in-right appstore-btn"><i class="bi bi-apple mr-2"></i>Appstore</button>
+            <button class="neubrutalism web-btn text-white px-8 py-3 slide-in-right"><i class="bi bi-globe mr-2"></i>Web</button>
         </div>
         <div class="mt-12 neubrutalism bg-white mx-auto max-w-3xl"  style="padding: .2rem;  border-radius: 20px;">
             <img src="${heroData.image}" alt="${heroData.alt}" class="w-full h-auto object-cover border-2 border-black" style="border-radius: 20px;">
@@ -555,6 +507,7 @@ function renderCollaboration() {
             <div class="flex flex-wrap gap-4">
                 <button class="neubrutalism action-btn  text-white px-8 py-3 playstore-btn"><i class="bi bi-google-play mr-2"></i>Playstore</button>
                 <button class="neubrutalism demo-btn appstore-btn text-white px-8 py-3"><i class="bi bi-apple mr-2"></i>Appstore</button>
+                <button class="neubrutalism web-btn text-white px-8 py-3"><i class="bi bi-globe mr-2"></i>Web</button>
             </div>
         </div>
         <div class="neubrutalism bg-white slide-in-right"  style="padding: .2rem; border-radius: 20px;">
@@ -688,63 +641,247 @@ function renderTeams() {
   document.getElementById("teams-content").innerHTML = content;
 }
 
-function renderPricing() {
-  const content = `
-        <h2 class="text-3xl font-bold text-center mb-4">
-            <span class="bg-black text-white px-2">Pricing</span> Plans
-        </h2>
-        <p class="text-center max-w-3xl mx-auto mb-12">${
-          pricingData.description
-        }</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            ${pricingData.items
-              .map(
-                (item) => `
-                <div class="pricing-card p-6 ${item.popular ? "featured" : ""}">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-2xl font-bold">${item.title}</h3>
-                        ${
-                          item.popular
-                            ? '<span class="bg-[#FF4F4F] text-white text-xs font-bold px-2 py-1">POPULAR</span>'
-                            : ""
-                        }
-                    </div>
-                    <p class="mb-4">${item.description}</p>
-                    <div class="text-4xl font-bold mb-4">${
-                      item.price.split("/")[0]
-                    }<span class="text-xl font-normal">/${
-                  item.price.split("/")[1]
-                }</span></div>
-                    <ul class="space-y-3 mb-8">
-                        ${item.features
-                          .map(
-                            (feature) => `
-                            <li class="flex items-start">
-                                <span class="mr-3 ${
-                                  feature.available
-                                    ? "text-green-600"
-                                    : "text-gray-400"
-                                }">${feature.available ? "✓" : "✗"}</span>
-                                <span class="${
-                                  feature.available ? "" : "text-gray-500"
-                                }">${feature.text}</span>
-                            </li>
-                        `
-                          )
-                          .join("")}
-                    </ul>
-                    <button class="neubrutalism ${
-                      item.title === "Enterprise" ? "contact-btn" : "action-btn"
-                    } text-white w-full py-3 font-medium">${
-                  item.title === "Enterprise" ? "Contact Sales" : "Get Started"
-                }</button>
+// Add this function before the renderPricing function
+function convertToDollars(price, currency) {
+  const conversionRates = {
+    USD: 1,
+    EUR: 1.08,
+    GBP: 1.27,
+    INR: 0.012,
+    // Add more currency conversion rates as needed
+  };
+
+  const rate = conversionRates[currency] || 1;
+  return Math.round(price * rate);
+}
+
+async function renderPricing() {
+  try {
+    const pricingSection = document.getElementById("pricing-content");
+    if (!pricingSection) {
+      console.error("Pricing section element not found");
+      return;
+    }
+
+    // Show loading state
+    pricingSection.innerHTML = `
+      <div class="flex justify-center items-center min-h-[200px]">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
+      </div>
+    `;
+
+    const plansCollection = collection(db, "subscription_plans");
+    const plansSnapshot = await getDocs(plansCollection);
+    const plans = plansSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    if (plans.length === 0) {
+      pricingSection.innerHTML =
+        "<p>No pricing plans available at the moment.</p>";
+      return;
+    }
+
+    const content = `
+        <div class="flex items-center justify-center min-h-[calc(100vh-4rem)] w-full">
+            <div class="w-full max-w-7xl mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-4">
+                    <span class="bg-black text-white px-2">Pricing</span> Plans
+                </h2>
+                <p class="text-center max-w-3xl mx-auto mb-12">Choose the perfect plan for your needs. All plans include core features with premium options for growing teams.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    ${plans
+                      .map(
+                        (plan) => `
+                        <div class="pricing-card p-6 ${
+                          plan.isPopular ? "featured" : ""
+                        }" 
+                             style="background: linear-gradient(to bottom right, ${
+                               plan.gradientStartColor
+                             }, ${
+                          plan.gradientEndColor
+                        }); height: 600px; overflow-y: auto;">
+                            <div class="flex justify-between items-center mb-2 sticky top-0 bg-inherit py-2">
+                                <h3 class="text-2xl font-bold">${plan.name}</h3>
+                                ${
+                                  plan.isPopular
+                                    ? '<span class="bg-[#FF4F4F] text-white text-xs font-bold px-2 py-1">POPULAR</span>'
+                                    : ""
+                                }
+                            </div>
+                            <p class="mb-4">${plan.description}</p>
+                            <div class="text-4xl font-bold mb-4">
+                                ${
+                                  plan.price === 0
+                                    ? "Free"
+                                    : `$${convertToDollars(
+                                        plan.price,
+                                        plan.currency
+                                      )}`
+                                }
+                                <span class="text-xl font-normal">/month</span>
+                            </div>
+                            <ul class="space-y-3 mb-8">
+                                ${plan.features
+                                  .map(
+                                    (feature) => `
+                                    <li class="flex items-start">
+                                        <span class="mr-3 text-green-600">✓</span>
+                                        <span>${feature}</span>
+                                    </li>
+                                `
+                                  )
+                                  .join("")}
+                            </ul>
+                            ${
+                              plan.maxTeamMembers > 0 ||
+                              plan.maxProjects > 0 ||
+                              plan.maxDocuments > 0 ||
+                              plan.maxTasks > 0
+                                ? `
+                            <div class="grid grid-cols-2 gap-2 mb-4 text-sm">
+                                ${
+                                  plan.maxTeamMembers > 0
+                                    ? `
+                                <div class="flex items-center">
+                                    <i class="bi bi-people mr-2"></i>
+                                    <span>${plan.maxTeamMembers} Team Members</span>
+                                </div>
+                                `
+                                    : ""
+                                }
+                                ${
+                                  plan.maxProjects > 0
+                                    ? `
+                                <div class="flex items-center">
+                                    <i class="bi bi-folder mr-2"></i>
+                                    <span>${plan.maxProjects} Projects</span>
+                                </div>
+                                `
+                                    : ""
+                                }
+                                ${
+                                  plan.maxDocuments > 0
+                                    ? `
+                                <div class="flex items-center">
+                                    <i class="bi bi-file-text mr-2"></i>
+                                    <span>${plan.maxDocuments} Documents</span>
+                                </div>
+                                `
+                                    : ""
+                                }
+                                ${
+                                  plan.maxTasks > 0
+                                    ? `
+                                <div class="flex items-center">
+                                    <i class="bi bi-check2-circle mr-2"></i>
+                                    <span>${
+                                      plan.maxTasks === -1
+                                        ? "Unlimited"
+                                        : plan.maxTasks
+                                    } Tasks</span>
+                                </div>
+                                `
+                                    : ""
+                                }
+                            </div>
+                            `
+                                : ""
+                            }
+                            ${
+                              plan.hasCalendar ||
+                              plan.hasDocumentFeatures ||
+                              plan.hasInvoices ||
+                              plan.hasSupport ||
+                              plan.hasTeamFeatures ||
+                              plan.hasAdvancedSettings
+                                ? `
+                            <div class="grid grid-cols-2 gap-2 mb-4 text-sm">
+                                ${
+                                  plan.hasCalendar
+                                    ? '<div class="flex items-center"><i class="bi bi-calendar-check mr-2"></i><span>Calendar</span></div>'
+                                    : ""
+                                }
+                                ${
+                                  plan.hasDocumentFeatures
+                                    ? '<div class="flex items-center"><i class="bi bi-file-earmark-text mr-2"></i><span>Documents</span></div>'
+                                    : ""
+                                }
+                                ${
+                                  plan.hasInvoices
+                                    ? '<div class="flex items-center"><i class="bi bi-receipt mr-2"></i><span>Invoices</span></div>'
+                                    : ""
+                                }
+                                ${
+                                  plan.hasSupport
+                                    ? '<div class="flex items-center"><i class="bi bi-headset mr-2"></i><span>Support</span></div>'
+                                    : ""
+                                }
+                                ${
+                                  plan.hasTeamFeatures
+                                    ? '<div class="flex items-center"><i class="bi bi-people-fill mr-2"></i><span>Team Features</span></div>'
+                                    : ""
+                                }
+                                ${
+                                  plan.hasAdvancedSettings
+                                    ? '<div class="flex items-center"><i class="bi bi-gear-fill mr-2"></i><span>Advanced Settings</span></div>'
+                                    : ""
+                                }
+                            </div>
+                            `
+                                : ""
+                            }
+                            <button class="neubrutalism ${
+                              plan.id === "tasksmatepro"
+                                ? "contact-btn"
+                                : "action-btn"
+                            } text-white w-full py-3 font-medium sticky bottom-0">
+                                ${
+                                  plan.price === 0
+                                    ? "Get Started"
+                                    : "Contact Sales"
+                                }
+                            </button>
+                        </div>
+                    `
+                      )
+                      .join("")}
                 </div>
-            `
-              )
-              .join("")}
+            </div>
         </div>
     `;
-  document.getElementById("pricing-content").innerHTML = content;
+    pricingSection.innerHTML = content;
+
+    // Add event listeners for the new buttons
+    const buttons = document.querySelectorAll(
+      ".pricing-card .action-btn, .pricing-card .contact-btn"
+    );
+    if (buttons.length > 0) {
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const contactModal = document.getElementById("contact-modal");
+          if (contactModal) {
+            contactModal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+          }
+        });
+      });
+    }
+  } catch (error) {
+    console.error("Error fetching pricing plans:", error);
+    const pricingSection = document.getElementById("pricing-content");
+    if (pricingSection) {
+      pricingSection.innerHTML = `
+        <div class="text-center p-8">
+          <p class="text-red-500 mb-4">Error loading pricing plans. Please try again later.</p>
+          <button onclick="renderPricing()" class="neubrutalism bg-[#FF4F4F] text-white px-6 py-2">
+            Retry
+          </button>
+        </div>
+      `;
+    }
+  }
 }
 
 function renderBenefits() {
@@ -840,6 +977,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const acceptCookiesButton = document.getElementById("accept-cookies");
   const playstoreButtons = document.querySelectorAll(".playstore-btn");
   const appstoreButtons = document.querySelectorAll(".appstore-btn");
+  const webButtons = document.querySelectorAll(".web-btn");
   const dialog = document.getElementById("neubrutalism-dialog");
   const closeDialogButton = document.getElementById("close-dialog");
 
@@ -861,6 +999,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   appstoreButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      showDialog();
+    });
+  });
+
+  webButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
       e.preventDefault();
       showDialog();
@@ -900,6 +1045,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const subscriptionToggles = document.querySelectorAll(".subscription-toggle");
   const priceElements = document.querySelectorAll(".user-price");
 
+  function updatePrices(userCount) {
+    priceElements.forEach((price) => {
+      const newPrice = price.dataset[`${userCount}Users`];
+      if (newPrice) {
+        price.textContent = `${userCount} Users: ${newPrice}/month`;
+      }
+    });
+  }
+
   subscriptionToggles.forEach((toggle) => {
     toggle.addEventListener("click", () => {
       // Remove active class and reset styles from all buttons
@@ -915,13 +1069,18 @@ document.addEventListener("DOMContentLoaded", () => {
       toggle.style.boxShadow = "var(--glossy-shadow), 7px 7px 0px var(--black)";
 
       const userCount = toggle.dataset.users;
-
-      priceElements.forEach((price) => {
-        const newPrice = price.dataset[`${userCount}Users`];
-        price.textContent = `${newPrice}/month`;
-      });
+      updatePrices(userCount);
     });
   });
+
+  // Initialize with default 10 users
+  const defaultToggle = document.querySelector(
+    '.subscription-toggle[data-users="10"]'
+  );
+  if (defaultToggle) {
+    defaultToggle.click();
+  }
+
   function updateCursorVisibility() {
     if (window.innerWidth <= 768) {
       // Adjust the width as needed for mobile
@@ -1291,258 +1450,98 @@ window.addEventListener("click", (e) => {
 });
 
 // Update the window load event listener to include the new render function
-window.addEventListener("load", () => {
-  renderHero();
-  renderCollaboration();
-  renderVideo();
-  renderIntegrations();
-  renderServices();
-  renderFeatures();
-  renderTeams();
-  renderPricing();
-  renderBenefits();
-  renderStats();
-  renderReplacesSoftware(); // Add this line
-  renderPartners();
-  renderBlog();
-  renderAbout();
-  renderCTA();
-  // Call the function to update the visitor count
-  updateVisitorCount();
-  attachEventListeners();
+window.addEventListener("load", async () => {
+  try {
+    // Initialize Firebase first
+    await initializeApp(firebaseConfig);
+
+    // Then render all sections
+    renderHero();
+    renderCollaboration();
+    renderVideo();
+    renderIntegrations();
+    renderServices();
+    renderFeatures();
+    renderTeams();
+    await renderPricing(); // Make sure to await this since it's async
+    renderBenefits();
+    renderStats();
+    renderReplacesSoftware();
+    renderPartners();
+    renderBlog();
+    renderAbout();
+    renderCTA();
+    updateVisitorCount();
+    attachEventListeners();
+  } catch (error) {
+    console.error("Error initializing app:", error);
+  }
 });
 
 function attachEventListeners() {
-  // Page loader (unchanged)
-  setTimeout(() => {
-    document.getElementById("loader").style.opacity = "0";
-    setTimeout(
-      () => (document.getElementById("loader").style.display = "none"),
-      500
-    );
-  }, 4000);
+  // Page loader
+  const loader = document.getElementById("loader");
+  if (loader) {
+    setTimeout(() => {
+      loader.style.opacity = "0";
+      setTimeout(() => (loader.style.display = "none"), 500);
+    }, 700);
+  }
 
-  // Custom cursor (unchanged)
+  // Custom cursor
   const cursor = document.querySelector(".custom-cursor");
   const cursorFollower = document.querySelector(".cursor-follower");
-  const videoCursorText = document.createElement("div");
-  videoCursorText.className = "video-cursor-text";
-  videoCursorText.textContent = "";
-  document.body.appendChild(videoCursorText);
+  if (cursor && cursorFollower) {
+    const videoCursorText = document.createElement("div");
+    videoCursorText.className = "video-cursor-text";
+    videoCursorText.textContent = "";
+    document.body.appendChild(videoCursorText);
 
-  document.addEventListener("mousemove", (e) => {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-    setTimeout(() => {
-      cursorFollower.style.left = e.clientX + "px";
-      cursorFollower.style.top = e.clientY + "px";
-    }, 100);
-  });
-
-  document.addEventListener("mousedown", () => {
-    cursor.style.transform = "translate(-50%, -50%) scale(0.8)";
-    cursorFollower.style.transform = "translate(-50%, -50%) scale(0.8)";
-  });
-
-  document.addEventListener("mouseup", () => {
-    cursor.style.transform = "translate(-50%, -50%) scale(1)";
-    cursorFollower.style.transform = "translate(-50%, -50%) scale(1)";
-  });
-
-  const buttons = document.querySelectorAll("button, a");
-  buttons.forEach((button) => {
-    button.addEventListener("mouseenter", () => {
-      cursor.classList.add("grow");
-      cursorFollower.classList.add("grow");
+    document.addEventListener("mousemove", (e) => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+      setTimeout(() => {
+        cursorFollower.style.left = e.clientX + "px";
+        cursorFollower.style.top = e.clientY + "px";
+      }, 100);
     });
-    button.addEventListener("mouseleave", () => {
-      cursor.classList.remove("grow");
-      cursorFollower.classList.remove("grow");
+
+    document.addEventListener("mousedown", () => {
+      cursor.style.transform = "translate(-50%, -50%) scale(0.8)";
+      cursorFollower.style.transform = "translate(-50%, -50%) scale(0.8)";
     });
-  });
 
-  const videoTriggers = document.querySelectorAll(
-    ".video-trigger, .video-play-btn"
-  );
-  videoTriggers.forEach((trigger) => {
-    trigger.addEventListener("mouseenter", () => {
-      cursor.classList.add("video-cursor");
-      videoCursorText.style.left = cursor.style.left;
-      videoCursorText.style.top = cursor.style.top;
-      videoCursorText.style.opacity = "1";
+    document.addEventListener("mouseup", () => {
+      cursor.style.transform = "translate(-50%, -50%) scale(1)";
+      cursorFollower.style.transform = "translate(-50%, -50%) scale(1)";
     });
-    trigger.addEventListener("mousemove", (e) => {
-      videoCursorText.style.left = e.clientX + "px";
-      videoCursorText.style.top = e.clientY + "px";
-    });
-    trigger.addEventListener("mouseleave", () => {
-      cursor.classList.remove("video-cursor");
-      videoCursorText.style.opacity = "0";
-    });
-  });
+  }
 
-  // Scroll buttons
-  const scrollToTop = document.getElementById("scroll-to-top");
-  const scrollToBottom = document.getElementById("scroll-to-bottom");
+  // Add other event listeners with null checks...
+  const contactButtons = document.querySelectorAll(".contact-btn");
+  const contactModal = document.getElementById("contact-modal");
+  const closeContactModal = document.querySelector(".close-contact-modal");
 
-  scrollToTop.addEventListener("click", () =>
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  );
-  scrollToBottom.addEventListener("click", () =>
-    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })
-  );
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 200) {
-      scrollToTop.style.display = "flex";
-      scrollToBottom.style.display = "none";
-    } else {
-      scrollToTop.style.display = "none";
-      scrollToBottom.style.display = "flex";
-    }
-  });
-
-  // Navbar logo scroll
-  document
-    .getElementById("navbar-logo")
-    .addEventListener("click", () =>
-      window.scrollTo({ top: 0, behavior: "smooth" })
-    );
-
-  // Mobile menu
-  const mobileMenuButton = document.getElementById("mobile-menu-button");
-  const closeMenuButton = document.getElementById("close-menu");
-  const mobileMenu = document.getElementById("mobile-menu");
-
-  mobileMenuButton.addEventListener("click", () =>
-    mobileMenu.classList.add("active")
-  );
-  closeMenuButton.addEventListener("click", () =>
-    mobileMenu.classList.remove("active")
-  );
-
-  document.querySelectorAll("#mobile-menu a").forEach((link) => {
-    link.addEventListener("click", () => mobileMenu.classList.remove("active"));
-  });
-
-  // Smooth scroll for navigation links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", (e) => {
-      e.preventDefault();
-      const targetId = anchor.getAttribute("href");
-      if (targetId === "#") return;
-      const target = document.querySelector(targetId);
-      if (target) target.scrollIntoView({ behavior: "smooth" });
-    });
-  });
-
-  // Team modals
-  const teamButtons = document.querySelectorAll(".team-btn");
-  const closeModalButtons = document.querySelectorAll(".close-modal");
-
-  teamButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const teamType = btn.getAttribute("data-team");
-      const modal = document.getElementById(`team-modal-${teamType}`);
-      if (modal) {
-        modal.style.display = "flex";
+  if (contactButtons.length > 0 && contactModal && closeContactModal) {
+    contactButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        contactModal.style.display = "flex";
         document.body.style.overflow = "hidden";
-      } else if (document.getElementById("team-modal-business")) {
-        document.getElementById("team-modal-business").style.display = "flex";
-        document.body.style.overflow = "hidden";
-      }
+      });
     });
-  });
 
-  closeModalButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      btn.closest(".team-modal").style.display = "none";
+    closeContactModal.addEventListener("click", () => {
+      contactModal.style.display = "none";
       document.body.style.overflow = "auto";
     });
-  });
 
-  // Contact modal
-  const contactButtons = document.querySelectorAll(".contact-btn");
-
-  contactButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      contactModal.style.display = "flex";
-      document.body.style.overflow = "hidden";
-    });
-  });
-
-  closeContactModal.addEventListener("click", () => {
-    contactModal.style.display = "none";
-    document.body.style.overflow = "auto";
-  });
-
-  // Theme toggle
-  const themeToggle = document.getElementById("theme-toggle");
-  const themeIcon = document.getElementById("theme-icon");
-  let currentTheme = "light";
-
-  themeToggle.addEventListener("click", () => {
-    if (currentTheme === "light") {
-      document.documentElement.setAttribute("data-theme", "dark");
-      themeIcon.classList.remove("bi-sun-fill");
-      themeIcon.classList.add("bi-moon-fill");
-      currentTheme = "dark";
-    } else {
-      document.documentElement.setAttribute("data-theme", "light");
-      themeIcon.classList.remove("bi-moon-fill");
-      themeIcon.classList.add("bi-sun-fill");
-      currentTheme = "light";
-    }
-  });
-
-  // Animation on scroll
-  const observerOptions = { root: null, rootMargin: "0px", threshold: 0.1 };
-  const observerCallback = (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
-        observer.unobserve(entry.target);
+    window.addEventListener("click", (e) => {
+      if (e.target === contactModal) {
+        contactModal.style.display = "none";
+        document.body.style.overflow = "auto";
       }
     });
-  };
-  const fadeObserver = new IntersectionObserver(
-    observerCallback,
-    observerOptions
-  );
-
-  document
-    .querySelectorAll(
-      ".feature-card, .integration-card, .stats-card, .testimonial-card, .pricing-card, .blog-card"
-    )
-    .forEach((card) => {
-      if (
-        !card.classList.contains("fade-in") &&
-        !card.classList.contains("slide-in-left") &&
-        !card.classList.contains("slide-in-right")
-      ) {
-        card.style.opacity = "0";
-        card.style.transform = "translateY(20px)";
-        card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-        fadeObserver.observe(card);
-      }
-    });
-
-  const animateShapesCallback = (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "0.5";
-        entry.target.style.animationDelay = Math.random() * 2 + "s";
-      }
-    });
-  };
-  const shapeObserver = new IntersectionObserver(animateShapesCallback, {
-    threshold: 0.1,
-  });
-
-  document
-    .querySelectorAll(".shape")
-    .forEach((shape) => shapeObserver.observe(shape));
+  }
 }
 
 // Contact Form Submission Handler
